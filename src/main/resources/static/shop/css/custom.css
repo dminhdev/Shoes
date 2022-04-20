@@ -105,6 +105,8 @@
 }
 .btns .size-text,
 .btns .dropdown-arrow {
+    padding-top: 3px;
+    margin-right: 5px;
     font-size: 1.25rem;
     color: #ABACAD;
     line-height: 1.75rem;
