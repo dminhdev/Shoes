@@ -70,7 +70,7 @@
     color: #333333 !important;
 }
 .btns .buy.btn-primary {
-    background-color: #08C;
+    background-color: #d9232d;
     margin-left: 2rem;
     border-radius: 5px;
     display: flex;
@@ -78,10 +78,10 @@
     justify-content: space-between;
 }
 .btns .buy.btn-primary:hover {
-    background-color: #035983;
+    background-color: #e24d55;
 }
 .btns .buy.btn-primary:active {
-    background-color: #005e8c !important;
+    background-color: #e24d55 !important;
 }
 .btns .buy.btn-primary .sub-content {
     color: #FEE8D8;
@@ -130,7 +130,7 @@
 
 #sizeChooseModal a:hover,
 #sizeGuideModal a:hover {
-    color: #035983;
+    color: #d9232d;
 }
 #modal-size-Choose .modal-header, #sizeChooseModal .modal-body,
 #sizeGuideModal .modal-header,
@@ -180,9 +180,13 @@ body.modal2-on {
 }
 
 .size-choose {
-    background-color: #08C;
+    background-color: #d9232d;
     color: #ffffff;
     border: none !important;
+}
+.size-choose:hover {
+    background-color: #e24d55;
+    color: #ffff;
 }
 
 .active-nav {
@@ -857,7 +861,7 @@ input[type=radio] + label .radio-dot:before {
     width: calc(100% / 4 - 10px);
     text-align: center;
     border: 1px solid #333333;
-    border-radius: 0.125rem;
+    border-radius: 0.6rem;
     display: flex;
     align-items: center;
     justify-content: center;

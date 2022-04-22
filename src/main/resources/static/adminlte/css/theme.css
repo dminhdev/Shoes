@@ -9,11 +9,13 @@ html {
 }
 
 body {
-    color: #777;
-    font-family: poppins, Arial, sans-serif;
+    font-family: "Open Sans", sans-serif;
+    background: #f6f9ff;
+    color: #444444;
     line-height: 22px;
     margin: 0;
-    font-size: 13px
+    font-size: 16px;
+
 }
 
 a {
@@ -27,10 +29,17 @@ a:hover, a:focus {
 a:active {
     color: #bfbfbf
 }
-
-.body {
-    min-height: 100vh;
-    width: 100%
+/*--------------------------------------------------------------
+# Page Title
+--------------------------------------------------------------*/
+.pagetitle {
+    margin-bottom: 10px;
+}
+.pagetitle h1 {
+    font-size: 24px;
+    margin-bottom: 0;
+    font-weight: 600;
+    color: #012970;
 }
 
 .header {
@@ -44,7 +53,6 @@ a:active {
 .inner-wrapper {
     display: table;
     min-height: 100vh;
-    padding-top: 60px;
     table-layout: fixed;
     overflow: hidden;
     width: 100%
@@ -188,10 +196,6 @@ a:active {
     html.fixed .header {
         position: fixed;
         z-index: 1020
-    }
-
-    html.fixed .inner-wrapper {
-        padding-top: 110px
     }
 
     html.fixed .content-body {
@@ -433,7 +437,6 @@ a:active {
         right: -100%;
         min-height: 0;
         margin-right: 0;
-        min-width: 100%;
         min-width: 100vw;
         top: 0;
         z-index: 100
@@ -1087,7 +1090,7 @@ a:active {
 }
 
 .sidebar-left {
-    background: #1d2127;
+    background: #ffff;
     z-index: 1010
 }
 
@@ -1098,11 +1101,10 @@ a:active {
 }
 
 .sidebar-left .sidebar-header .sidebar-title {
-    background: #1d2127;
+    background: #ffff;
     color: #465162;
     padding: 15px;
-    font-size: 12.8px;
-    font-size: .8rem
+    font-size: 0.8rem
 }
 
 .sidebar-left .sidebar-header .sidebar-toggle {
@@ -1111,7 +1113,6 @@ a:active {
     right: 0;
     width: 73px;
     height: 50px;
-    background-color: #171717;
     border-radius: 0 0 0 5px;
     text-align: center;
     cursor: pointer
@@ -1119,8 +1120,7 @@ a:active {
 
 .sidebar-left .sidebar-header .sidebar-toggle i {
     color: #c3c3c3;
-    font-size: 14.4px;
-    font-size: .9rem;
+    font-size: 0.9rem;
     line-height: 50px;
     transition: all .15s ease-in-out
 }
@@ -1786,7 +1786,7 @@ html.no-overflowscrolling.custom-scroll .nano > .nano-content {
 }
 
 html.no-overflowscrolling .sidebar-left .nano {
-    background: #1d2127;
+    background: #FFFFFF;
     box-shadow: -5px 0 0 #2f3139 inset
 }
 
@@ -1845,7 +1845,6 @@ html.no-overflowscrolling.sidebar-light:not(.dark) .inner-menu .nano {
     float: left;
     height: 50px;
     font-size: 19.2px;
-    font-size: 1.2rem;
     font-weight: 400;
     letter-spacing: normal;
     line-height: 50px;
@@ -6580,27 +6579,6 @@ html.sidebar-light:not(.dark) ul.nav-main li .nav-children li a:hover, html.side
     margin-left: 10px
 }
 
-.btn-primary {
-    background-color: #ccc;
-    border-color: #ccc #ccc #b3b3b3;
-    color: #fff
-}
-
-.btn-primary:hover, .btn-primary.hover {
-    background-color: #dfdfdf;
-    border-color: #e6e6e6 #e6e6e6 #ccc;
-    color: #fff
-}
-
-.btn-primary:focus, .btn-primary.focus {
-    box-shadow: 0 0 0 3px rgba(204, 204, 204, .5);
-    color: #fff
-}
-
-.btn-primary.disabled, .btn-primary:disabled {
-    background-color: #ccc;
-    border-color: #ccc #ccc #b3b3b3
-}
 
 .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
     background-color: #b9b9b9;
