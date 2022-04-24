@@ -50,7 +50,7 @@
     margin-bottom: 0;
 }
 .btns .size.btn-primary {
-    width: 320px;
+    width: 190px;
     margin-right: 15px;
     padding: 1.5rem;
     background-color: #ffffff;
@@ -99,7 +99,7 @@
 }
 .btns .size-details,
 .btns .main-content {
-    font-size: 1.875rem;
+    font-size: 1.5rem;
     font-weight: bold;
     line-height: 2.625rem;
 }
@@ -226,7 +226,7 @@ body.modal2-on {
     margin-top: 1.875rem;
 }
 .pricing .btn-primary {
-    width: 100%;
+    width: 150px;
     margin-bottom: 1.25rem;
     padding: 0.75rem 1.25rem;
 }
@@ -234,7 +234,7 @@ body.modal2-on {
     margin-bottom: 0px;
 }
 .pricing .size.btn-primary {
-    padding: 2.25rem;
+    padding: 1.2rem;
     background-color: #ffffff;
     border: 1px solid #D5D6D6;
     display: flex;
@@ -260,8 +260,14 @@ body.modal2-on {
     color: #333333;
     font-weight: bold;
 }
-
-.bid-buy-btn .btn,
+.number-spinner{
+    width:150px;
+    float:right;
+    margin-bottom: 5px;
+}
+.number-spinner .input-group-btn{
+    height:46px;
+}
 .asks-sell-btn .btn {
     padding: 1.25rem;
     font-weight: bold;

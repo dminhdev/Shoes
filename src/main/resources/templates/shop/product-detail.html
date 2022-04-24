@@ -312,7 +312,7 @@
         function render() {
             for (let i = 0; i < sizeVn.length; i++) {
                 let sizeChoose = `
-            <div class="item" data-size="${sizeUs[i]}US | ${sizeVn[i]}VN | ${sizeCm[i]}CM" data-id="${sizeVn[i]}">
+            <div class="item" data-size=" ${sizeVn[i]}" data-id="${sizeVn[i]}">
                 ${sizeVn[i]}
             </div>
             `;
@@ -340,7 +340,7 @@
 
             for (let i = 0; i < sizeVn.length; i++) {
                 if (sizeVn[i] == availableSizes[0]) {
-                    $('.size-details').text(sizeUs[i] + "US | " + sizeVn[i] + "VN | " + sizeCm[i] + "CM")
+                    $('.size-details').text("Chọn Size")
                     break;
                 }
             }
@@ -357,7 +357,7 @@
             if (isLogined == true) {
                 let size = $('.size-choose').data("id");
                 if (size == null || size == "") {
-                    toastr.warning("Sản phẩm tạm hết hàng. Vui lòng đặt hàng sau.");
+                    toastr.warning("Vui lòng chọn size sản phẩm");
                 } else {
                     location.href = "/dat-hang?id="+[[${product.id}]]+"&size="+size;
                 }

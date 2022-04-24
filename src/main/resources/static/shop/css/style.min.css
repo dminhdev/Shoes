@@ -2310,12 +2310,6 @@ a:focus {
 .icon-category-tools:before {
     content: '\e917'
 }
-
-.icon-search-3:before {
-    content: '\e918'
-    color : #d9232d;
-}
-
 .icon-secure-payment:before {
     content: '\e919'
 }
@@ -2419,7 +2413,7 @@ form h2 {
 }
 
 .form-control {
-    height: 4rem;
+    height: 4.6rem;
     margin-bottom: 1rem;
     padding: 2rem;
     transition: all .3s;
@@ -8873,13 +8867,14 @@ main .sticky-header .product-ratings:before {
 }
 
 .prod-thumbnail > .owl-dot {
-    flex: 1;
+    /*flex: 1;*/
     -ms-flex: 1 1 100px;
     margin: 3px
 }
 
 .prod-thumbnail img {
     width: 100px;
+    height:100px;
     cursor: pointer
 }
 
@@ -9096,6 +9091,7 @@ main .sticky-header .product-ratings:before {
 }
 
 .add-product-review {
+    border-radius: 10px;
     background-color: #f4f4f4;
     padding: 3rem 2rem 3.5rem
 }
