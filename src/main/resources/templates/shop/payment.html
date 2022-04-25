@@ -9,7 +9,8 @@
                                                                      ~{:: #js-resources},
                                                                      ~{:: #main-content}
                                                                     )}"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://thymeleaf.org ">
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://thymeleaf.org
+http://thymeleaf.org ">
 <head>
     <meta charset="UTF-8">
     <title>Thanh toán</title>
@@ -61,7 +62,7 @@
                                 th:styleappend="${notFoundSize} == true ? '' : 'display:none'">Size giày này đã hết. Vui
                                 lòng chọn size khác.</h6>
                             <div class="row">
-                                <h5 class="ml-3 mt-3 mr-3">Size giày :</h5>
+                                <h5 class="ml-3 mt-4 mr-3">Size giày :</h5>
                                 <div class="size-btn" data-toggle="modal" data-target="#modal-size-Choose">
                                     <button class="btn btn-primary size trans-btn"><span
                                             class="size-text">Size</span><span th:data-size="${size}"
@@ -69,17 +70,17 @@
                                             class="fas dropdown-arrow"></i></button>
 
                                 </div>
-                                <h5 class="ml-5 mt-3 mr-3">Số lượng :</h5>
+                                <h5 class="ml-5 mt-4 mr-3">Số lượng :</h5>
                                 <div class="input-group number-spinner">
                                 <span class="input-group-btn input-group-btn-left">
                                     <button class="btn btn-default" data-dir="dwn"
-                                            style="border-top-right-radius: 0;border-bottom-right-radius: 0;"><span
+                                            style="border-top-right-radius: 0;border-bottom-right-radius: 0;background: #9999;"><span
                                             class="bi bi-dash"></span></button>
                                 </span>
                                     <input type="text" class="form-control text-center number-quantity" value="1">
                                     <span class="input-group-btn input-group-btn-right">
                                     <button class="btn btn-default" data-dir="up"
-                                            style="border-top-left-radius: 0;border-bottom-left-radius: 0;"><span
+                                            style="border-top-left-radius: 0;border-bottom-left-radius: 0;background: #9999;"><span
                                             class="bi bi-plus"></span></button>
                                 </span>
                                 </div>

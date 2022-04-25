@@ -1119,8 +1119,8 @@ a:active {
 }
 
 .sidebar-left .sidebar-header .sidebar-toggle i {
-    color: #c3c3c3;
-    font-size: 0.9rem;
+    color: #012970;
+    font-size: 1.2rem;
     line-height: 50px;
     transition: all .15s ease-in-out
 }
@@ -1184,11 +1184,6 @@ html.mobile-device .sidebar-left {
 }
 
 @media only screen and (min-width: 768px) {
-    html.sidebar-left-collapsed .sidebar-left .nano {
-        background: #1d2127;
-        box-shadow: -5px 0 0 #2f3139 inset
-    }
-
     html.sidebar-left-collapsed .sidebar-left .sidebar-title {
         margin-left: -300px;
         opacity: 0
@@ -1756,8 +1751,9 @@ html.no-overflowscrolling .nano.has-scrollbar > .nano-content::-webkit-scrollbar
 
 html.no-overflowscrolling .nano > .nano-pane {
     bottom: 0;
+    background-color: #ffff;
     position: absolute;
-    opacity: .01;
+    opacity: 0.3;
     right: 0;
     top: 0;
     visibility: hidden \9;
@@ -1787,7 +1783,6 @@ html.no-overflowscrolling.custom-scroll .nano > .nano-content {
 
 html.no-overflowscrolling .sidebar-left .nano {
     background: #FFFFFF;
-    box-shadow: -5px 0 0 #2f3139 inset
 }
 
 html.no-overflowscrolling.sidebar-light:not(.dark) .sidebar-left .nano {
@@ -5515,10 +5510,6 @@ h6 .inverted {
     text-transform: capitalize !important
 }
 
-.text-muted {
-    color: #999 !important
-}
-
 html.dark .text-muted {
     color: #505461 !important
 }
@@ -5821,7 +5812,7 @@ ul.nav-main > li > a {
 }
 
 ul.nav-main > li > a:hover, ul.nav-main > li > a:focus {
-    background-color: #21262d
+    background-color: #f6f9ff
 }
 
 ul.nav-main > li.nav-active > a {
@@ -5837,7 +5828,7 @@ ul.nav-main > li.nav-active > i {
 }
 
 ul.nav-main > li.nav-expanded > a {
-    background: #21262d
+    background: #f6f9ff
 }
 
 ul.nav-main li {
@@ -5846,22 +5837,24 @@ ul.nav-main li {
 
 ul.nav-main li a {
     display: block;
-    color: #abb4be;
+    color: #012970;
     white-space: nowrap;
+    font-weight: 600;
     text-overflow: ellipsis;
-    font-size: 12.8px;
-    font-size: .8rem
+    font-size: 1rem
 }
-
+ul.nav-main li a:hover {
+    color: #4154f1;
+}
 ul.nav-main li a span.badge {
     font-weight: 400;
-    padding: .3em .7em .4em;
-    margin: .4em -1em 0 0
+    padding: 0.3em 0.7em 0.4em;
+    margin: 0.4em -1em 0 0
 }
 
 ul.nav-main li a .not-included {
     font-style: normal;
-    color: #505b67;
+    color: #4154f1;
     display: inline-block;
     padding: 0 0 0 6px
 }
@@ -5871,7 +5864,6 @@ ul.nav-main li span {
 }
 
 ul.nav-main li i {
-    font-size: 18.4px;
     font-size: 1.15rem;
     width: 1.1em;
     margin-right: .5em;
@@ -5907,7 +5899,7 @@ ul.nav-main li.nav-parent.nav-expanded > ul.nav-children {
 }
 
 ul.nav-main li .nav-children {
-    background: #191c21;
+    background: #ffff;
     box-shadow: 0 -3px 3px -3px rgba(0, 0, 0, .7) inset;
     display: none;
     padding: 10px 0
@@ -5919,7 +5911,7 @@ ul.nav-main li .nav-children li a {
 }
 
 ul.nav-main li .nav-children li a:hover, ul.nav-main li .nav-children li a:focus {
-    background: #191c21
+    background: #ffff
 }
 
 ul.nav-main li .nav-children li a:after {
@@ -16450,19 +16442,15 @@ p.drop-caps.drop-caps-style-2:first-letter {
 }
 
 .userbox .name {
-    color: #001;
-    font-size: 12.8px;
-    font-size: .8rem;
-    line-height: 17.6px;
+    color: #012970;
+    font-size: 1.1rem;
     line-height: 1.1rem
 }
 
 .userbox .role {
     color: #acacac;
-    font-size: 11.2px;
-    font-size: .7rem;
-    line-height: 11.2px;
-    line-height: .7rem
+    font-size: 0.8rem;
+    line-height: 0.9rem
 }
 
 .userbox .custom-caret {
@@ -16514,15 +16502,12 @@ p.drop-caps.drop-caps-style-2:first-letter {
     border-radius: 2px;
     color: #7d7d7d;
     display: block;
-    line-height: 20.8px;
     line-height: 1.3rem;
     padding: 4px 10px;
-    font-size: 12px;
-    font-size: .75rem
+    font-size: 0.75rem
 }
 
 .userbox.show .dropdown-menu a i {
-    font-size: 17.6px;
     font-size: 1.1rem
 }
 
@@ -17007,7 +16992,6 @@ ul.simple-bullet-list li.orange:before {
     width: 90px;
     height: 90px;
     line-height: 90px;
-    font-size: 51.2px;
     font-size: 3.2rem;
     text-align: center;
     color: #fff;
@@ -17021,16 +17005,14 @@ ul.simple-bullet-list li.orange:before {
 
 .widget-summary .summary .title {
     margin: 0;
-    font-size: 14.4px;
-    font-size: .9rem;
-    color: #333;
-    font-weight: 500;
+    font-size: 1.1rem;
+    color: #012970;
+    font-weight: 700;
     line-height: 1.5
 }
 
 .widget-summary .summary .info {
-    font-size: 13.6px;
-    font-size: .85rem
+    font-size: 1rem
 }
 
 .widget-summary .summary .info span {
