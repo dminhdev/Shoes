@@ -7,6 +7,7 @@ input.form-control {
 }
 
 .input-group-text {
+    font-size: 1.6rem;
     background-color: transparent;
     border-right: 0px;
 }
@@ -35,9 +36,8 @@ textarea {
     background-color: #eee;
     padding: 10px;
 }
-
 .info-price-div {
-    max-width: 300px;
+    max-width: 700px;
 }
 
 .display-info-price {

@@ -187,6 +187,10 @@ input#upload-thumbnail {
     grid-template-columns: repeat(12, 1fr);
 }
 
+.grid-list-img {
+    padding-left: 15px 0px;
+}
+
 #list-onfeet-image {
     padding-left: 15px 0px;
     display: grid;

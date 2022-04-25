@@ -3123,7 +3123,7 @@ window.theme.fn = {
 				wrapper: $('body'),
 				offset: 150,
 				buttonClass: 'scroll-to-top',
-				iconClass: 'fas fa-chevron-up',
+				iconClass: 'bi bi-arrow-up-short',
 				delay: 500,
 				visibleMobile: false,
 				label: false

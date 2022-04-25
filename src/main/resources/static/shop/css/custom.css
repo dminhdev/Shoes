@@ -427,9 +427,9 @@ body.modal2-on {
 }
 .main-content .nav-pills .nav-link.active {
     background-color: transparent;
-    color: #007bff;
+    color: #d9232d;
     border-radius: 0px;
-    border-bottom: 2px solid #007bff;
+    border-bottom: 2px solid #d9232d;
 }
 .main-content .nav-link {
     display: block;
@@ -457,7 +457,6 @@ body.modal2-on {
 .main-content .full-details,
 .main-content .order-number {
     font-weight: bold;
-    color: #007bff;
 }
 .main-content .item-info-wrapper {
     display: grid;

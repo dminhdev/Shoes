@@ -13,8 +13,6 @@
     <title th:text="${post.title}"></title>
     <th:block id="css-resources">
         <link rel="stylesheet" th:href="@{/adminlte/pagination/simplePagination.css}">
-        <!--        <link rel="stylesheet" th:href="@{/adminlte/vendor/select2/css/select2.css}">-->
-        <!--        <link rel="stylesheet" th:href="@{/adminlte/vendor/select2-bootstrap-theme/select2-bootstrap.min.css}">-->
     </th:block>
 </head>
 <body>
@@ -89,7 +87,7 @@
                                                          alt="Thumbnail post">
                                                 </div>
                                             </div>
-                                            <button type="button" class="btn btn-info" data-toggle="modal"
+                                            <button type="button" class="btn btn-primary" data-toggle="modal"
                                                     data-target="#choose-img-modal">
                                                 Chọn ảnh
                                             </button>

@@ -142,8 +142,40 @@ $.validator.addMethod("phone", function (value, element) {
 function signedValidate(status = false, fullname = '') {
     if (status == true) {
         isLogined = true;
-        let signedLink = `
-     <a href="/tai-khoan" id="account-setting">Xin chào ${fullname}</a>
+        let signedLink = `<div class="mt-4">
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-toggle="dropdown">
+                <span  id="account-setting" class="nav-item dropdown pe-3">Xin chào ${fullname}</span>
+                <i class="bi bi-caret-down-fill ml-1 mt-1"></i>
+              </a>
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="/tai-khoan">
+                <i class="bi bi-person"></i>
+                <span>Thông tin tài khoản</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="/tai-khoan/lich-su-giao-dich">
+                <i class="bi bi-cart"></i>
+                <span>Quản lý đơn hàng</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="/api/logout">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Đăng xuất</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+</div>
 `;
         $('.account-setting').replaceWith(signedLink);
     } else {

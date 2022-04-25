@@ -1,8 +1,6 @@
 <!doctype html>
 <html class="fixed" xmlns:th="http://www.thymeleaf.org" th:fragment="main-fragment(title, header,sidebar, cssResources, jsResources, mainContent)">
 
-<!-- Mirrored from www.okler.net/previews/porto-admin/3.1.0/layouts-default.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 03 Mar 2021 05:30:02 GMT -->
-
 <head>
 
     <meta charset="UTF-8">
@@ -12,11 +10,8 @@
     <meta name="author" content="okler.net">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-
-
-<!--    <link th:href="@{/adminlte/fonts/css6525.css}" rel="stylesheet" type="text/css">-->
     <link rel="stylesheet" th:href="@{/adminlte/vendor/bootstrap/css/bootstrap.css}"/>
-    <link rel="stylesheet" th:href="@{/adminlte/vendor/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/shop/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/adminlte/vendor/animate/animate.compat.css}">
     <link rel="stylesheet" th:href="@{/adminlte/vendor/font-awesome/css/all.min.css}"/>
 
@@ -143,6 +138,5 @@
 <th:block th:replace="${jsResources} ?: ~{}"></th:block>
 </body>
 
-<!-- Mirrored from www.okler.net/previews/porto-admin/3.1.0/layouts-default.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 03 Mar 2021 05:32:40 GMT -->
 
 </html>

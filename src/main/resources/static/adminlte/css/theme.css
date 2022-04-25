@@ -14,16 +14,17 @@ body {
     color: #444444;
     line-height: 22px;
     margin: 0;
-    font-size: 16px;
+    font-size: 17px;
 
 }
 
 a {
-    color: #ccc
+    color: #6c757d;
+    text-decoration: none;
 }
 
 a:hover, a:focus {
-    color: #d9d9d9
+    color: #6c757d;
 }
 
 a:active {
@@ -199,7 +200,8 @@ a:active {
     }
 
     html.fixed .content-body {
-        margin-left: 300px
+        margin-left: 300px;
+        margin-top:50px
     }
 
     html.fixed .content-body.has-toolbar {
@@ -5900,7 +5902,7 @@ ul.nav-main li.nav-parent.nav-expanded > ul.nav-children {
 
 ul.nav-main li .nav-children {
     background: #ffff;
-    box-shadow: 0 -3px 3px -3px rgba(0, 0, 0, .7) inset;
+    box-shadow: 0 -3px 3px -3px rgba(0, 0, 0, 0.4) inset;
     display: none;
     padding: 10px 0
 }
@@ -6402,7 +6404,7 @@ html.sidebar-light:not(.dark) ul.nav-main li .nav-children li a:hover, html.side
 }
 
 .badge-primary {
-    background: #ccc;
+    background: deepskyblue;
     color: #fff
 }
 
@@ -7102,7 +7104,7 @@ html.dark .call-to-action.call-to-action-grey:before {
 .card-actions a, .card-actions .card-action {
     background-color: transparent;
     border-radius: 2px;
-    color: #b4b4b4;
+    color: #012970;
     font-size: 14px;
     height: 24px;
     line-height: 24px;
@@ -7112,7 +7114,7 @@ html.dark .call-to-action.call-to-action-grey:before {
 
 .card-actions a:hover, .card-actions .card-action:hover {
     background-color: #eee;
-    color: #b4b4b4;
+    color: #4154f1;
     text-decoration: none
 }
 
@@ -7122,7 +7124,7 @@ html.dark .call-to-action.call-to-action-grey:before {
 }
 
 .card-title {
-    color: #33353f;
+    color: #012970;
     font-size: 18px;
     line-height: 18px;
     padding: 0;
@@ -7245,15 +7247,15 @@ html.dark .call-to-action.call-to-action-grey:before {
 }
 
 .card-featured-right {
-    border-right: 3px solid #ccc
+    border-right: 3px outset #ccc
 }
 
 .card-featured-bottom {
-    border-bottom: 3px solid #ccc
+    border-bottom: 3px outset #ccc
 }
 
 .card-featured-left {
-    border-left: 3px solid #ccc
+    border-left: 3px outset #ccc
 }
 
 .card-featured-primary {
@@ -14329,21 +14331,22 @@ html.dark .progress.light {
 }
 
 html .scroll-to-top {
-    transition: all .3s;
+    transition: all 0.3s;
     background: #282d36;
-    border-radius: 7px 7px 0 0;
-    bottom: 0;
+    border-radius: 5px;
+    bottom: 5px;
     color: #fff;
     display: block;
-    height: 9px;
+    height: 45px;
+    font-size: 1.9rem;
     opacity: 0;
-    padding: 5px 10px 25px;
+    padding: 5px;
     position: fixed;
     right: 10px;
     text-align: center;
     text-decoration: none;
-    min-width: 39px;
-    z-index: 1040
+    max-width: 40px;
+    z-index: 1040;
 }
 
 html .scroll-to-top:hover {
@@ -15115,6 +15118,7 @@ html.dark .note-editor .caret {
 }
 
 .table {
+    --bs-table-striped-bg: rgba(0, 0, 0, 0);
     width: 100%
 }
 
@@ -16989,13 +16993,36 @@ ul.simple-bullet-list li.orange:before {
 
 .widget-summary .summary-icon {
     margin-right: 15px;
-    width: 90px;
-    height: 90px;
-    line-height: 90px;
-    font-size: 3.2rem;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 3rem;
     text-align: center;
-    color: #fff;
     border-radius: 55px
+}
+.person-icon{
+    color: #ff771d;
+    background: #ffecdf;
+}
+.product-icon{
+    background: #cff4fc;
+    color: #3bbfe0;
+}
+.cart-icon{
+    color: #4154f1;
+    background: #f6f6fe;
+}
+.post-icon{
+    color: #2eca6a;
+    background: #e0f8e9;
+}
+.category-icon{
+    background: gainsboro;
+    color: steelblue;
+}
+.brand-icon{
+    background-color: #f8d7da;
+    color: #ff7272;
 }
 
 .widget-summary .summary {
