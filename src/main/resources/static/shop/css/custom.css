@@ -21,11 +21,10 @@
 }
 
 .slider-nav .slick-slide {
-    margin: 0px 0.3125rem;
+    margin: 0 0.3125rem;
     cursor: pointer;
-}a
-
-.title.h3,
+}
+a .title.h3,
 .desc,
 .desc-sub {
     margin-bottom: 1.25rem;
@@ -36,11 +35,10 @@
 }
 
 .btns .btn-primary {
-    /*width: 100%;*/
     border-radius: 5px;
     margin-left: 1rem;
     margin-bottom: 1.25rem;
-    padding: 1.75rem 4.25rem;
+    padding: 1rem 2rem;
 }
 .buy-now{
     width: 200px;
@@ -50,9 +48,8 @@
     margin-bottom: 0;
 }
 .btns .size.btn-primary {
-    width: 190px;
+    width: 170px;
     margin-right: 15px;
-    padding: 1.5rem;
     background-color: #ffffff;
     border: 1px solid #D5D6D6;
     display: flex;
@@ -410,6 +407,7 @@ body.modal2-on {
 /*    font-weight: bold;*/
 /*}*/
 .main-content{
+    min-height: 275px;
     margin-top: 50px;
     margin-bottom: 50px;
 }

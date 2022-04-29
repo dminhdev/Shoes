@@ -186,7 +186,7 @@ function signedValidate(status = false, fullname = '',roles='') {
 </div>
 `;
         let SignedCart =`<a href="" data-toggle="modal" data-target="#CartModal" style="font-size:2.5rem;padding-top: 1rem;" class=" bi bi-cart cart-buy">
-                                <label style="margin-left: -3px;float: right;border-radius: 10px;width: 20px;height: 21px;padding: 2px 4px 2px 6px;background: red;color: #ffff;">0</label>
+                                <label style="text-align:center;margin-left: -4px;float: right;border-radius: 10px;min-width: 18px;width: auto;height: 20px;padding: 2px 2px 2px 2px;background: red;color: #ffff;">0</label>
                             </a>`;
         $('.cart-buy').replaceWith(SignedCart);
         $('.account-setting').replaceWith(signedLink);
