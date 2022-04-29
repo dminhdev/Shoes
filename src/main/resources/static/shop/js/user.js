@@ -41,7 +41,7 @@ $(document).ready(function () {
                 contentType: "application/json; charset=utf-8",
                 success: function(data) {
                     toastr.success("Đăng nhập thành công");
-                    signedValidate(true, data.fullName);
+                    signedValidate(true, data.fullName,data.roles);
                     $('.modal').modal('hide');
                 },
                 error: function(error) {
@@ -110,6 +110,7 @@ $(document).ready(function () {
             let email = $("#register_email").val();
             let password = $("#register_password").val();
 
+
             req = {
                 fullName: fullName,
                 email: email,
@@ -124,7 +125,7 @@ $(document).ready(function () {
                 contentType: "application/json; charset=utf-8",
                 success: function(data) {
                     toastr.success("Đăng ký thành công");
-                    signedValidate(true, data.fullName);
+                    signedValidate(true, data.fullName,data.roles);
                     $('.modal').modal('hide');
                 },
                 error: function(error) {
@@ -138,10 +139,17 @@ $(document).ready(function () {
 $.validator.addMethod("phone", function (value, element) {
     return this.optional(element) || /((09|03|07|08|05)+([0-9]{8})\b)/g.test(value);
 }, "Số điện thoại không hợp lệ!")
-
-function signedValidate(status = false, fullname = '') {
+function signedValidate(status = false, fullname = '',roles='') {
     if (status == true) {
         isLogined = true;
+        if(roles =='USER'){
+            let Link_USER =`<li class="tool-admin float-right"><a href="/#"></a></li>`;
+            $('.tool-admin').replaceWith(Link_USER);
+        }else {
+            let Link_AD =`<li class="tool-admin float-right"><a href="/admin">Quản trị trang</a></li>`;
+            $('.tool-admin').replaceWith(Link_AD);
+        }
+
         let signedLink = `<div class="mt-4">
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-toggle="dropdown">
                 <span  id="account-setting" class="nav-item dropdown pe-3">Xin chào ${fullname}</span>
@@ -177,13 +185,26 @@ function signedValidate(status = false, fullname = '') {
           </ul><!-- End Profile Dropdown Items -->
 </div>
 `;
+        let SignedCart =`<a href="" data-toggle="modal" data-target="#CartModal" style="font-size:2.5rem;padding-top: 1rem;" class=" bi bi-cart cart-buy">
+                                <label style="margin-left: -3px;float: right;border-radius: 10px;width: 20px;height: 21px;padding: 2px 4px 2px 6px;background: red;color: #ffff;">0</label>
+                            </a>`;
+        $('.cart-buy').replaceWith(SignedCart);
         $('.account-setting').replaceWith(signedLink);
-    } else {
+    }else {
         isLogined = false;
         let notSignedLink = `
               <a href="#" data-toggle="modal" data-target="#exampleModal" class="header-icon account-setting"><i class="icon-user-2"></i></a>
           `;
+        let notSignedCart=`<a href="#" style="font-size:2.5rem;padding-top: 1rem;" class=" bi bi-cart cart-buy"> </a>`;
         $('.account-setting').replaceWith(notSignedLink);
+        $('.cart-buy').click(function() {
+            if(isLogined==false){
+                toastr.warning("Vui lòng đăng nhập để đặt hàng");
+                setTimeout(function() {
+                    $('#exampleModal').modal('show');
+                }, 500);
+            }
+        })
     }
 }
 

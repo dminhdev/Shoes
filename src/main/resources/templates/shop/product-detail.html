@@ -116,10 +116,26 @@
                         <span th:unless="${canBuy}" style="color:#f04e40">Tạm hết hàng</span>
                     </div>
                     <hr class="divider">
-
+                    <div class="row">
+                        <h5 class="ml-5 mt-4 mr-3">Số lượng :</h5>
+                        <div class="ml-4 mb-5 input-group number-spinner">
+                                <span class="input-group-btn input-group-btn-left">
+                                    <button class="btn btn-default" data-dir="dwn"
+                                            style="border-top-right-radius: 0;border-bottom-right-radius: 0;background: #99999;"><span
+                                            class="bi bi-dash"></span></button>
+                                </span>
+                            <input type="text" class="form-control text-center number-quantity" value="1">
+                            <span class="input-group-btn input-group-btn-right">
+                                    <button class="btn btn-default" data-dir="up"
+                                            style="border-top-left-radius: 0;border-bottom-left-radius: 0;background: #99999;"><span
+                                            class="bi bi-plus"></span></button>
+                                </span>
+                        </div>
+                    </div>
                     <div class="btns">
 
                         <div class="row btn-buy">
+                            <h5 class="ml-5 mt-4 mr-3">Chọn size :</h5>
                             <div class="size-btn" data-toggle="modal" data-target="#modal-size-Choose">
                                 <button class="btn btn-primary size trans-btn">
                                     <span class="size-text">Size</span>
@@ -138,17 +154,17 @@
                     <hr class="divider mb-1">
 
                     <div class="product-single-share">
-<!--                        <label class="sr-only">Share:</label>-->
+                        <label class="sr-only">Share:</label>
 
-<!--                        <div class="social-icons mr-2">-->
-<!--                            <a href="#" class="social-icon social-facebook icon-facebook" target="_blank" title="Facebook"></a>-->
-<!--                            <a href="#" class="social-icon social-twitter icon-twitter" target="_blank" title="Twitter"></a>-->
-<!--                            <a href="#" class="social-icon social-linkedin fab fa-linkedin-in" target="_blank" title="Linkedin"></a>-->
-<!--                            <a href="#" class="social-icon social-gplus fab fa-google-plus-g" target="_blank" title="Google +"></a>-->
-<!--                            <a href="#" class="social-icon social-mail icon-mail-alt" target="_blank" title="Mail"></a>-->
-<!--                        </div>&lt;!&ndash; End .social-icons &ndash;&gt;-->
+                        <div class="social-icons mr-2">
+                            <a href="#" class="social-icon social-facebook icon-facebook" target="_blank" title="Facebook"></a>
+                            <a href="#" class="social-icon social-twitter icon-twitter" target="_blank" title="Twitter"></a>
+                            <a href="#" class="social-icon social-linkedin fab fa-linkedin-in" target="_blank" title="Linkedin"></a>
+                            <a href="#" class="social-icon social-gplus fab fa-google-plus-g" target="_blank" title="Google +"></a>
+                            <a href="#" class="social-icon social-mail icon-mail-alt" target="_blank" title="Mail"></a>
+                        </div><!-- End .social-icons -->
 
-<!--                        <a href="#" class="add-wishlist" title="Add to Wishlist">Add to Wishlist</a>-->
+                        <a href="#" class="add-wishlist" title="Add to Wishlist">Add to Wishlist</a>
                     </div><!-- End .product single-share -->
                 </div><!-- End .product-single-details -->
             </div><!-- End .row -->
@@ -197,11 +213,11 @@
                                                 <img th:src="@{/shop/images/avatar/avatar.png}" width="65" height="65" alt="avatar"/>
                                             </div><!-- End .comment-avatar-->
                                             <div class="comment-box">
-<!--                                                <div class="ratings-container">-->
-<!--                                                    <div class="product-ratings">-->
-<!--                                                        <span class="ratings" style="width:80%"></span>&lt;!&ndash; End .ratings &ndash;&gt;-->
-<!--                                                    </div>&lt;!&ndash; End .product-ratings &ndash;&gt;-->
-<!--                                                </div>&lt;!&ndash; End .ratings-container &ndash;&gt;-->
+                                                <div class="ratings-container">
+                                                    <div class="product-ratings">
+                                                        <span class="ratings" style="width:80%"></span><!-- End .ratings -->
+                                                    </div><!-- End .product-ratings -->
+                                                </div><!-- End .ratings-container -->
 
                                                 <div class="comment-info mb-1">
                                                     <h4 class="avatar-name" th:text="${comment.user.fullName}"></h4> - <span class="comment-date" th:text="${#dates.format(comment.createdAt, 'dd-MM-yyyy')}">Novemeber 15, 2019</span>

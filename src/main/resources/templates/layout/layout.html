@@ -46,7 +46,29 @@
     <!-- FOOTER -->
     <th:block th:replace="~{fragment/footer :: ${footer}}"></th:block>
 </div><!-- End .page-wrapper -->
+<div class="modal fade " id="CartModal" tabindex="-1" role="dialog"
+     aria-labelledby="CartModal"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Thông tin giỏ hàng</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row row-sparse">
+                    <div class="col-md-12">
+                        <form class="mb-1" id="loginForm">
 
+                        </form>
+                    </div><!-- End .col-md-6 -->
+                </div><!-- End .row -->
+            </div>
+        </div>
+    </div>
+</div>
 <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
 
 <a id="scroll-top" href="#top" title="Top" role="button"><i class="bi bi-arrow-up-short"></i></a>
@@ -66,12 +88,12 @@
 <script th:inline="javascript">
 
     let isLogined = [[${isLogined}]];
-
     $(function () {
         if (isLogined == true) {
-            signedValidate(true, [[${user_fullname}]]);
+            signedValidate(true, [[${user_fullname}]], [[${user_roles}]]);
         } else {
             signedValidate();
+
         }
     })
     $('.cart-details').click(function() {
