@@ -147,6 +147,7 @@ public class HomeController {
         //Lấy danh sách size
         model.addAttribute("sizeVn", SIZE_VN);
         model.addAttribute("size", size);
+        model.addAttribute("quantity", quantity);
 
         return "shop/payment";
     }
