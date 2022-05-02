@@ -41,7 +41,7 @@ public class ProductController {
     private String xlsx = ".xlsx";
     private static final int BUFFER_SIZE = 4096;
     private static final String TEMP_EXPORT_DATA_DIRECTORY = "\\resources\\reports";
-    private static final String EXPORT_DATA_REPORT_FILE_NAME = "San_pham";
+    private static final String EXPORT_DATA_REPORT_FILE_NAME = "Danh_Sach_San_pham";
 
     @Autowired
     private ServletContext context;

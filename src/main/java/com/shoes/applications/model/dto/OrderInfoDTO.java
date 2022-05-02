@@ -14,6 +14,8 @@ public class OrderInfoDTO {
 
     private long totalPrice;
 
+    private int quantity;
+
     private int sizeVn;
 
     private double sizeUs;
@@ -24,10 +26,11 @@ public class OrderInfoDTO {
 
     private String productImg;
 
-    public OrderInfoDTO(long id, long totalPrice, int sizeVn, String productName, String productImg) {
+    public OrderInfoDTO(long id, long totalPrice, int sizeVn,int quantity, String productName, String productImg) {
         this.id = id;
         this.totalPrice = totalPrice;
         this.sizeVn = sizeVn;
+        this.quantity = quantity;
         this.productName = productName;
         this.productImg = productImg;
     }

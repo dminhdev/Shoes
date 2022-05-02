@@ -44,6 +44,9 @@ public class CreateOrderRequest {
     @JsonProperty("product_price")
     private long productPrice;
 
+
+    private int quantity;
+
     private String note;
 
 }

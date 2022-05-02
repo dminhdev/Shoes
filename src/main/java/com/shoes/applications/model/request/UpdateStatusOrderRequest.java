@@ -27,6 +27,7 @@ public class UpdateStatusOrderRequest {
     private String receiverAddress;
 
     private String note;
+    private int  quantity;
 
     private int status;
 }

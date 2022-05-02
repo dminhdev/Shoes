@@ -61,6 +61,7 @@
                                         <div class="thumbnails"><img class="img-fluid" th:src="@{${item.productImg}}" th:alt="${item.productName}"/></div>
                                         <div class="product-info"><span class="name" th:text="${item.productName}"></span>
                                             <div class="size"><span th:text="${item.sizeVn}"></span></div>
+                                            <div class="size">ssss<span th:text="${item.quantity}"></span></div>
                                         </div>
                                     </div>
                                     <div class="price bid-price"><span class="text-price" th:text="${item.totalPrice}"></span> &#x20AB;</div>
@@ -77,6 +78,7 @@
                                             <a class="name" th:href="@{/tai-khoan/lich-su-giao-dich/{id}(id=${item.id})}" th:text="${item.productName}"></a>
                                             <div class="size">
                                                  <span th:text="${item.sizeVn}"></span>
+                                                 <span th:text="${item.quantity}"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -143,6 +145,7 @@
                                             <a class="name" href="/tai-khoan/lich-su-giao-dich/${order.id}">${order.productName}</a>
                                             <div class="size">
                                                  <span>${order.sizeVn}</span>
+                                                 <span>Số lượng: ${order.quantity}</span>
                                             </div>
                                         </div>
                                     </div>

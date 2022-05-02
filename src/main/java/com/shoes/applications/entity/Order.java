@@ -21,6 +21,7 @@ import java.sql.Timestamp;
                                 columns = {
                                         @ColumnResult(name = "id", type = Long.class),
                                         @ColumnResult(name = "total_price", type = Long.class),
+                                        @ColumnResult(name = "quantity", type = Integer.class),
                                         @ColumnResult(name = "size_vn", type = Integer.class),
                                         @ColumnResult(name = "product_name", type = String.class),
                                         @ColumnResult(name = "product_img", type = String.class)
@@ -39,6 +40,7 @@ import java.sql.Timestamp;
                                         @ColumnResult(name = "receiver_phone", type = String.class),
                                         @ColumnResult(name = "receiver_address", type = String.class),
                                         @ColumnResult(name = "status", type = Integer.class),
+                                        @ColumnResult(name = "quantity", type = Integer.class),
                                         @ColumnResult(name = "size_vn", type = Integer.class),
                                         @ColumnResult(name = "product_name", type = String.class),
                                         @ColumnResult(name = "product_img", type = String.class)
@@ -50,7 +52,7 @@ import java.sql.Timestamp;
 @NamedNativeQuery(
         name = "getListOrderOfPersonByStatus",
         resultSetMapping = "orderInfoDTO",
-        query = "SELECT od.id, od.total_price, od.size size_vn, p.name product_name, (p.images ->> '$[0]') as product_img " +
+        query = "SELECT od.id, od.total_price, od.size size_vn, p.name product_name, od.quantity,(p.images ->> '$[0]') as product_img " +
                 "FROM orders od " +
                 "INNER JOIN product p " +
                 "ON od.product_id = p.id " +
@@ -60,7 +62,7 @@ import java.sql.Timestamp;
 @NamedNativeQuery(
         name = "userGetDetailById",
         resultSetMapping = "orderDetailDto",
-        query = "SELECT orders.id, orders.total_price, orders.size size_vn, product.name product_name, orders.price as product_price, " +
+        query = "SELECT orders.id, orders.total_price, orders.size size_vn, product.name product_name, orders.quantity,orders.price as product_price, " +
                 "orders.receiver_name, orders.receiver_phone, orders.receiver_address, orders.status, " +
                 "product.images ->> \"$[0]\" as product_img " +
                 "FROM orders " +
@@ -95,7 +97,6 @@ public class Order {
     private int size;
     @Column(name = "quantity")
     private int quantity;
-
     @ManyToOne
     @JoinColumn(name = "buyer")
     private User buyer;

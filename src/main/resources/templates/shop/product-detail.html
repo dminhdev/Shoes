@@ -116,26 +116,11 @@
                         <span th:unless="${canBuy}" style="color:#f04e40">Tạm hết hàng</span>
                     </div>
                     <hr class="divider">
-                    <div class="row">
-                        <h5 class="ml-5 mt-4 mr-3">Số lượng :</h5>
-                        <div class="ml-4 mb-5 input-group number-spinner">
-                                <span class="input-group-btn input-group-btn-left">
-                                    <button class="btn btn-default" data-dir="dwn"
-                                            style="border-top-right-radius: 0;border-bottom-right-radius: 0;background: #99999;"><span
-                                            class="bi bi-dash"></span></button>
-                                </span>
-                            <input type="text" class="form-control text-center number-quantity" value="1">
-                            <span class="input-group-btn input-group-btn-right">
-                                    <button class="btn btn-default" data-dir="up"
-                                            style="border-top-left-radius: 0;border-bottom-left-radius: 0;background: #99999;"><span
-                                            class="bi bi-plus"></span></button>
-                                </span>
-                        </div>
-                    </div>
                     <div class="btns">
 
                         <div class="row btn-buy">
-                            <h5 class="ml-5 mt-4 mr-3">Chọn size :</h5>
+
+                            <h5 class="ml-4 mt-4 mr-3">Chọn size :</h5>
                             <div class="size-btn" data-toggle="modal" data-target="#modal-size-Choose">
                                 <button class="btn btn-primary size trans-btn">
                                     <span class="size-text">Size</span>
@@ -143,7 +128,24 @@
                                     <i class="fas dropdown-arrow"></i>
                                 </button>
                             </div>
+                            <h5 class="ml-5 mt-4 mr-3">Số lượng :</h5>
+                            <div class="input-group number-spinner">
+                                    <span class="input-group-btn input-group-btn-left">
+                                        <button class="btn btn-default" data-dir="dwn"
+                                                style="border-top-right-radius: 0;border-bottom-right-radius: 0;background: #99999;"><span
+                                                class="bi bi-dash"></span></button>
+                                    </span>
+                                <input id="quantity-product" type="text" class="form-control text-center number-quantity" value="0"/>
+                                <span class="input-group-btn input-group-btn-right">
+                                        <button class="btn btn-default" data-dir="up"
+                                                style="border-top-left-radius: 0;border-bottom-left-radius: 0;background: #99999;"><span
+                                                class="bi bi-plus"></span></button>
+                                    </span>
+                            </div>
                             <div class="buy-btn">
+                                <button class="btn btn-primary add-cart" th:classappend="${canBuy} == true ? '' : 'not-buy'" value="">
+                                    Thêm vào giỏ hàng
+                                </button>
                                 <button class="btn btn-primary buy-now" th:classappend="${canBuy} == true ? '' : 'not-buy'" value="">
                                     Mua ngay
                                 </button>
@@ -204,64 +206,61 @@
 
                 <div class="tab-pane fade" id="product-reviews-content" role="tabpanel" aria-labelledby="product-tab-reviews">
                     <div class="product-reviews-content">
-                        <div class="row">
-                            <div class="col-xl-6">
-                                <ol class="comment-list">
-                                    <th:block th:each="comment : ${product.comments}">
-                                        <li class="comment-container">
-                                            <div class="comment-avatar">
-                                                <img th:src="@{/shop/images/avatar/avatar.png}" width="65" height="65" alt="avatar"/>
-                                            </div><!-- End .comment-avatar-->
-                                            <div class="comment-box">
-                                                <div class="ratings-container">
-                                                    <div class="product-ratings">
-                                                        <span class="ratings" style="width:80%"></span><!-- End .ratings -->
-                                                    </div><!-- End .product-ratings -->
-                                                </div><!-- End .ratings-container -->
+                        <div class="col-xl-6">
+                            <ol class="comment-list">
+                                <th:block th:each="comment : ${product.comments}">
+                                    <li class="comment-container">
+                                        <div class="comment-avatar">
+                                            <img th:src="@{/shop/images/avatar/avatar.png}" style="width:65px ;height:65px" alt="avatar"/>
+                                        </div><!-- End .comment-avatar-->
+                                        <div class="comment-box">
+                                            <div class="ratings-container">
+                                                <div class="product-ratings">
+                                                    <span class="ratings" style="width:80%"></span><!-- End .ratings -->
+                                                </div><!-- End .product-ratings -->
+                                            </div><!-- End .ratings-container -->
 
-                                                <div class="comment-info mb-1">
-                                                    <h4 class="avatar-name" th:text="${comment.user.fullName}"></h4> - <span class="comment-date" th:text="${#dates.format(comment.createdAt, 'dd-MM-yyyy')}">Novemeber 15, 2019</span>
-                                                </div><!-- End .comment-info -->
+                                            <div class="comment-info mb-1">
+                                                <h4 class="avatar-name" th:text="${comment.user.fullName}"></h4> - <span class="comment-date" th:text="${#dates.format(comment.createdAt, 'dd-MM-yyyy')}">Novemeber 15, 2019</span>
+                                            </div><!-- End .comment-info -->
 
-                                                <div class="comment-text">
-                                                    <p th:text="${comment.content}"></p>
-                                                </div><!-- End .comment-text -->
-                                            </div><!-- End .comment-box -->
-                                        </li><!-- comment-container -->
-                                    </th:block>
-                                </ol><!-- End .comment-list -->
-                            </div>
+                                            <div class="comment-text">
+                                                <p th:text="${comment.content}"></p>
+                                            </div><!-- End .comment-text -->
+                                        </div><!-- End .comment-box -->
+                                    </li><!-- comment-container -->
+                                </th:block>
+                            </ol><!-- End .comment-list -->
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="add-product-review">
+                                <form action="#" class="comment-form m-0" id="formCommentProduct">
+                                    <div class="rating-form">
+                                        <label for="rating">Đánh giá chất lượng sản phẩm</label>
+                                        <div class="rating btn-rating">
+                                            <input type="radio" name="rating" value="5" id="rating-5">
+                                            <label for="rating-5"></label>
 
-                            <div class="col-xl-6">
-                                <div class="add-product-review">
-                                    <form action="#" class="comment-form m-0" id="formCommentProduct">
-                                        <div class="rating-form">
-                                            <label for="rating">Đánh giá chất lượng sản phẩm</label>
-                                            <div class="rating btn-rating">
-                                                <input type="radio" name="rating" value="5" id="rating-5">
-                                                <label for="rating-5"></label>
+                                            <input type="radio" name="rating" value="4" id="rating-4">
+                                            <label for="rating-4"></label>
 
-                                                <input type="radio" name="rating" value="4" id="rating-4">
-                                                <label for="rating-4"></label>
+                                            <input type="radio" name="rating" value="3" id="rating-3">
+                                            <label for="rating-3"></label>
 
-                                                <input type="radio" name="rating" value="3" id="rating-3">
-                                                <label for="rating-3"></label>
+                                            <input type="radio" name="rating" value="2" id="rating-2">
+                                            <label for="rating-2"></label>
 
-                                                <input type="radio" name="rating" value="2" id="rating-2">
-                                                <label for="rating-2"></label>
-
-                                                <input type="radio" name="rating" value="1" id="rating-1">
-                                                <label for="rating-1"></label>
-                                            </div>
+                                            <input type="radio" name="rating" value="1" id="rating-1">
+                                            <label for="rating-1"></label>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Viết bình luận </label>
-                                            <textarea cols="6" rows="6" name="product_comment" class="form-control form-control-sm product_comment"></textarea>
-                                        </div><!-- End .form-group -->
-                                        <button type="submit" class="btn btn-dark ls-n-15">Gửi bình luận</button>
-                                    </form>
-                                </div><!-- End .add-product-review -->
-                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Viết bình luận </label>
+                                        <textarea cols="6" rows="6" name="product_comment" class="form-control form-control-sm product_comment"></textarea>
+                                    </div><!-- End .form-group -->
+                                    <button type="submit" class="btn btn-dark ls-n-15">Gửi bình luận</button>
+                                </form>
+                            </div><!-- End .add-product-review -->
                         </div>
                     </div><!-- End .product-reviews-content -->
                 </div><!-- End .tab-pane -->
@@ -336,7 +335,9 @@
                 $('.size .select-filter').append(sizeChoose);
             };
         };
+        function check_quantity(){
 
+        }
         function sizeGuideRender() {
             let tr = '';
             for (let i = 0; i < sizeVn.length; i++) {
@@ -356,7 +357,7 @@
 
             for (let i = 0; i < sizeVn.length; i++) {
                 if (sizeVn[i] == availableSizes[0]) {
-                    $('.size-details').text("Chọn Size")
+                    $('.sils').text("Chọn Size")
                     break;
                 }
             }
@@ -372,10 +373,13 @@
         $('.buy-now').click(function() {
             if (isLogined == true) {
                 let size = $('.size-choose').data("id");
+                let quantity = $('#quantity-product').val();
                 if (size == null || size == "") {
                     toastr.warning("Vui lòng chọn size sản phẩm");
+                }else if(quantity =="" || quantity ==0){
+                    toastr.warning("Vui lòng nhập số lượng sản phẩm");
                 } else {
-                    location.href = "/dat-hang?id="+[[${product.id}]]+"&size="+size;
+                    location.href = "/dat-hang?id="+[[${product.id}]]+"&size="+size+"&quantity="+quantity;
                 }
             } else {
                 toastr.warning("Vui lòng đăng nhập để đặt hàng");
@@ -384,6 +388,54 @@
                 }, 500);
             }
         })
+        $(document).ready(function(){
+            $("#add-cart").on("click",function (e){
+                addToCart();
+            });
+        });
+        let product_id= [[${product.id}]];
+        function addToCart(){
+            quantity = $("#quantity-product"+ product_id).val();
+            url= "/cart/add/"+product_id+"/"+size+"/"+quantity
+        }
+
+        $('.add-cart').click(function() {
+            if (isLogined == true) {
+                let size = $('.size-choose').data("id");
+                let quantity = $('#quantity-product').val();
+                if (size == null || size == "") {
+                    toastr.warning("Vui lòng chọn size sản phẩm");
+                }else if(quantity == null || quantity==""||quantity==0){
+                    toastr.warning("Vui lòng nhập số lượng sản phẩm");
+                } else {
+                    req = {
+                        product_id: [[${product.id}]],
+                        size: size,
+                        quantity: quantity,
+                    }
+                    var myJSON = JSON.stringify(req);
+                    $.ajax({
+                        url: "cart/add/pid="+[[${product.id}]]+"/"+size+"/"+quantity,
+                        type: 'POST',
+                        data: myJSON,
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            toastr.success("Thêm vào giỏ hàng thành công");
+                            location.reload();
+                        },
+                        error: function (data) {
+                            toastr.warning(data.responseJSON.message);
+                        }
+                    });
+                }
+            } else {
+                toastr.warning("Vui lòng đăng nhập để đặt hàng");
+                setTimeout(function() {
+                    $('#exampleModal').modal('show');
+                }, 500);
+            }
+        })
+
 
         $("#formCommentProduct").submit(function (e) {
             e.preventDefault();
@@ -404,7 +456,10 @@
             submitHandler: function () {
                 let content = $(".product_comment").val();
                 let productId = [[${product.id}]];
-                req = {
+
+
+                    req = {
+
                     content: content,
                     productId: productId
                 }
@@ -415,17 +470,20 @@
                     data: myJson,
                     contentType: "application/json; charset=utf-8",
                     success: function (data) {
+
                         $(".comment-list").append(`
                                 <li class="comment-container">
-                                            <div class="comment-avatar">
-                                                <img src="/shop/images/avatar/avatar.png" width="65" height="65" alt="avatar"/>
-                                            </div>
                                             <div class="comment-box">
                                                 <div class="comment-text">
                                                     <p>${data.content}</p>
                                                 </div>
                                             </div>
-                                        </li>`)
+                                        </li>
+
+                                        <li class="comment-container">
+                                            <div class="comment-avatar">
+                                                <img th:src="@{/shop/images/avatar/avatar.png}" style="width:65px ;height:65px" alt="avatar"/>
+                                            </div>`)
                         $(".product_comment").val('');
                     },
                     error: function (error) {

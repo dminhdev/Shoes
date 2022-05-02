@@ -30,6 +30,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
 //    @Query(value = "select count(product_id) AS A from orders where product_id = ?1;", nativeQuery = true)
 //    int countByProductIds(String id);
-
+//    @Query(nativeQuery = true, value = "SELECT COUNT(DISTINCT oders.id) " +
+//            "FROM oders WHERE oders.user_id = ?1; ")
     int countByProductId(String id);
 }

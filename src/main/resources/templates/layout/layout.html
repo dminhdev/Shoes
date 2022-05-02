@@ -61,9 +61,28 @@
                 <div class="row row-sparse">
                     <div class="col-md-12">
                         <form class="mb-1" id="loginForm">
-
+                            <div class="row">
+                                <div class="col-md-3 thumbnails"><img class="img-fluid" />ảnh</div>
+                                <div class="col-md-3 product-info"><span class="name" > tên sản phẩm </span>
+                                    <div class="size"><span>size </span></div>
+                                </div>
+                                <div class="col-md-3 input-group number-spinner">
+                                    <span class="input-group-btn input-group-btn-left">
+                                        <button type="button" class="btn btn-default" data-dir="dwn"
+                                                style="border-top-right-radius: 0;border-bottom-right-radius: 0;background: #99999;"><span
+                                                class="bi bi-dash"></span></button>
+                                    </span>
+                                        <input type="text" class="form-control text-center number-quantity" value="1">
+                                        <span class="input-group-btn input-group-btn-right">
+                                        <button type="button" class="btn btn-default" data-dir="up"
+                                                style="border-top-left-radius: 0;border-bottom-left-radius: 0;background: #99999;"><span
+                                                class="bi bi-plus"></span></button>
+                                    </span>
+                                </div>
+                                <div class="col-md-3 price bid-price"><span class="text-price">Giá</span> &#x20AB;</div>
+                            </div>
                         </form>
-                    </div><!-- End .col-md-6 -->
+                    </div>
                 </div><!-- End .row -->
             </div>
         </div>
@@ -122,6 +141,36 @@
             }, 500);
         }
     })
+
+    function getCountItemsCart() {
+        $.ajax({
+            url: '/api/user/count/cartItems',
+            type: 'GET',
+            contentType: 'application/json',
+            success: function (data) {
+                $('#count-itemCart').append(`
+                        <strong>${data}</strong>`)
+            }
+        })
+    }
+    $('.cart-buy').click(function () {
+        $.ajax({
+            url: '/api/cart/user/{id}' + [[${user_id}]],
+            type: 'GET',
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+
+            },
+            error: function (data) {
+                $('#in-coupon').val(couponCode);
+                toastr.warning(data.responseJSON.message);
+            },
+        });
+    })
+
+
+
+
     function formatMoney() {
         $('.text-price').each(function (index, element) {
             money = $(element).text();

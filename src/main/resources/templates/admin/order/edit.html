@@ -18,8 +18,8 @@
 </head>
 <body>
 <section role="main" class="content-body" id="main-content">
-    <header class="page-header">
-        <!--        <h2>Editable Tables</h2>-->
+<!--    <header class="page-header">
+        &lt;!&ndash;        <h2>Editable Tables</h2>&ndash;&gt;
         <div class="right-wrapper text-right">
             <ol class="breadcrumbs">
                 <li>
@@ -33,7 +33,7 @@
             <a class="sidebar-right-toggle" data-open="sidebar-right"><i
                     class="fas fa-chevron-left"></i></a>
         </div>
-    </header>
+    </header>-->
         <section class="card">
             <header class="card-header">
                 <div class="card-actions">
@@ -142,6 +142,7 @@
                                                     <tr>
                                                         <th>Sản phẩm</th>
                                                         <th>Kích cỡ</th>
+                                                        <th>Số lượng</th>
                                                         <th>Giá tiền</th>
                                                         <th>Khuyến mãi</th>
                                                         <th>Mức giảm</th>
@@ -158,6 +159,9 @@
                                                             <th:block th:if="${order.status} == 1">
                                                                 <span th:if="${sizeIsAvailable} == false" class="badge badge-danger">Hết hàng</span>
                                                             </th:block>
+                                                        </td>
+                                                        <td>
+                                                            <span th:text="${order.quantity}"></span>
                                                         </td>
                                                         <td>
                                                             <span class="text-price" th:text="${order.price}"></span> đ
@@ -236,6 +240,10 @@
                             <span class="invalid-feedback" id="invalid-feedback-product">Sản phẩm đã hết size</span>
                         </div>
                         <div class="form-group">
+                            <label for="quantity">Số lượng</label>
+                            <input class="form-control" id="quantity"/>
+                        </div>
+                        <div class="form-group">
                             <label for="size">Khuyến mãi</label>
                             <select class="form-control" id="promotion">
                                 <option value="">Chọn khuyến mãi</option>
@@ -283,6 +291,7 @@
         var status = [[${order.status}]]
         if (status == 1) {
             let products = [[${products}]]
+            let quantity = [[${quantity}]]
             let promotions = [[${promotions}]]
             let productPrice = 0;
             let promotionPrice = 0;
@@ -291,13 +300,15 @@
             function eventChangeProduct() {
                 let idProduct = $('#product').val();
                 let sizes = [];
+                let quantity = $('#quantity').val();
                 for (product of products) {
                     if (product.id == idProduct) {
                         if (product.availableSizes != null) {
                             sizes = product.availableSizes;
                         }
+
                         productPrice = product.price;
-                        totalPrice = product.price;
+                        totalPrice = product.price*quantity;
                         break;
                     }
                 }
@@ -321,7 +332,7 @@
             function calculatePrice() {
                 let codePromotion = $('#promotion').val();
                 if (codePromotion.length > 0) {
-                    for (promotion of promotions) {
+                    for (let promotion of promotions) {
                         if (promotion.couponCode == codePromotion) {
                             if (promotion.discountType == 1) {
                                 promotionPrice = productPrice * promotion.discountValue / 100;
@@ -331,7 +342,7 @@
                             } else {
                                 promotionPrice = promotion.discountValue;
                             }
-                            totalPrice = productPrice - promotionPrice;
+                            totalPrice = productPrice*quantity - promotionPrice;
                             if (totalPrice < 0) {
                                 totalPrice = 0;
                             }
@@ -351,6 +362,7 @@
             function openModalChangeDetailOrder() {
                 $('.invalid-feedback').hide();
                 $('#product').val([[${order.product.id}]]);
+                $('#quantity').val([[${order.quantity}]]);
                 let promotion = [[${order.promotion}]]
                 if (promotion != null) {
                     $('#promotion').val(promotion.couponCode);
@@ -362,6 +374,7 @@
 
             function changeDetailOrder() {
                 let product = $('#product').val();
+                let quantity = $('#quantity').val();
                 let size = $('#size').val();
                 let promotion = $('#promotion').val();
                 if (size == null || size == "") {
@@ -372,9 +385,10 @@
                 req = {
                     product_id: product,
                     size: parseInt(size),
+                    quantity: parseInt(quantity),
                     coupon_code: promotion,
-                    total_price: totalPrice,
-                    product_price: productPrice
+                    total_price: totalPrice*quantity,
+                    product_price: productPrice*quantity
                 }
 
                 var myJSON = JSON.stringify(req);

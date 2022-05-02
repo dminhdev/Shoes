@@ -33,15 +33,17 @@ a .title.h3,
 .desc-sub-title {
     font-weight: bold;
 }
-
+.buy-btn{
+    margin:auto
+}
 .btns .btn-primary {
     border-radius: 5px;
     margin-left: 1rem;
     margin-bottom: 1.25rem;
-    padding: 1rem 2rem;
+    padding: 1rem ;
 }
 .buy-now{
-    width: 200px;
+    width: 190px;
     margin-left: 100px;
 }
 .btns .sell:last-child {
@@ -258,8 +260,9 @@ body.modal2-on {
     font-weight: bold;
 }
 .number-spinner{
-    width:150px;
-    float:right;
+    width: 171px;
+    float: right;
+    margin-left: 13px;
     margin-bottom: 5px;
 }
 .number-spinner .input-group-btn{

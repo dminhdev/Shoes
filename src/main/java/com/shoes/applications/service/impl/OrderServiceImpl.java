@@ -91,7 +91,7 @@ public class OrderServiceImpl implements OrderService {
         order.setPrice(createOrderRequest.getProductPrice());
         order.setTotalPrice(createOrderRequest.getTotalPrice());
         order.setStatus(ORDER_STATUS);
-        order.setQuantity(1);
+        order.setQuantity(createOrderRequest.getQuantity());
         order.setProduct(product.get());
 
         orderRepository.save(order);
@@ -119,9 +119,9 @@ public class OrderServiceImpl implements OrderService {
             throw new BadRequestException("Sản phẩm không tồn tại");
         }
         //Kiểm tra giá
-        if (product.get().getSalePrice() != updateDetailOrder.getProductPrice()) {
-            throw new BadRequestException("Giá sản phẩm thay đổi vui lòng đặt hàng lại");
-        }
+//        if (product.get().getSalePrice() != updateDetailOrder.getProductPrice()) {
+//            throw new BadRequestException("Giá sản phẩm thay đổi vui lòng đặt hàng lại");
+//        }
 
         ProductSize productSize = productSizeRepository.checkProductAndSizeAvailable(updateDetailOrder.getProductId(), updateDetailOrder.getSize());
         if (productSize == null) {
@@ -135,9 +135,9 @@ public class OrderServiceImpl implements OrderService {
                 throw new NotFoundException("Mã khuyến mãi không tồn tại hoặc chưa được kích hoạt");
             }
             long promotionPrice = promotionService.calculatePromotionPrice(updateDetailOrder.getProductPrice(), promotion);
-            if (promotionPrice != updateDetailOrder.getTotalPrice()) {
-                throw new BadRequestException("Tổng giá trị đơn hàng thay đổi. Vui lòng kiểm tra và đặt lại đơn hàng");
-            }
+//            if (promotionPrice != updateDetailOrder.getTotalPrice()) {
+//                throw new BadRequestException("Tổng giá trị đơn hàng thay đổi. Vui lòng kiểm tra và đặt lại đơn hàng");
+//            }
             Order.UsedPromotion usedPromotion = new Order.UsedPromotion(updateDetailOrder.getCouponCode(), promotion.getDiscountType(), promotion.getDiscountValue(), promotion.getMaximumDiscountValue());
             order.setPromotion(usedPromotion);
         }
@@ -145,6 +145,7 @@ public class OrderServiceImpl implements OrderService {
         order.setModifiedAt(new Timestamp(System.currentTimeMillis()));
         order.setProduct(product.get());
         order.setSize(updateDetailOrder.getSize());
+        order.setQuantity(updateDetailOrder.getQuantity());
         order.setPrice(updateDetailOrder.getProductPrice());
         order.setTotalPrice(updateDetailOrder.getTotalPrice());
 

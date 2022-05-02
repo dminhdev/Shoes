@@ -15,6 +15,7 @@ import com.shoes.applications.model.dto.ProductInfoDTO;
 import com.shoes.applications.model.dto.ShortProductInfoDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, String> {
@@ -31,12 +32,6 @@ public interface ProductRepository extends JpaRepository<Product, String> {
             "AND c.id LIKE CONCAT('%',?3,'%') " +
             "AND p.brand_id LIKE CONCAT('%',?4,'%')) as tb1 on pro.id=tb1.id", nativeQuery = true)
     Page<Product> adminGetListProducts(String id, String name, String category, String brand, Pageable pageable);
-
-//    @Query(value = "SELECT NEW com.shoes.applications.model.dto.ProductInfoDTO(p.id, p.name, p.slug, p.price ,p.images ->> '$[0]', p.total_sold) " +
-//            "FROM product p " +
-//            "WHERE p.status = 1 " +
-//            "ORDER BY p.created_at DESC limit ?1",nativeQuery = true)
-//    List<ProductInfoDTO> getListBestSellProducts(int limit);
 
     //Lấy sản phẩm được bán nhiều
     @Query(nativeQuery = true,name = "getListBestSellProducts")

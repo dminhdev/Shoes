@@ -114,7 +114,7 @@ public class HomeController {
     }
 
     @GetMapping("/dat-hang")
-    public String getCartPage(Model model, @RequestParam String id,@RequestParam int size){
+    public String getCartPage(Model model, @RequestParam String id,@RequestParam int size,@RequestParam int quantity){
 
         //Lấy chi tiết sản phẩm
         DetailProductInfoDTO product;
@@ -146,8 +146,6 @@ public class HomeController {
 
         //Lấy danh sách size
         model.addAttribute("sizeVn", SIZE_VN);
-        model.addAttribute("sizeUs", SIZE_US);
-        model.addAttribute("sizeCm", SIZE_CM);
         model.addAttribute("size", size);
 
         return "shop/payment";

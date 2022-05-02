@@ -2413,7 +2413,7 @@ form h2 {
 }
 
 .form-control {
-    height: 4.75rem;
+    height: 4.6rem;
     margin-bottom: 1rem;
     padding: 2rem;
     transition: all .3s;
@@ -3366,7 +3366,7 @@ span.page-link, .page-link-btn {
 
 .product-default figure img {
     transition: all 0.5s;
-    height: auto;
+    height: 270px;
     width: 100%
 }
 
@@ -3405,7 +3405,8 @@ span.page-link, .page-link-btn {
 }
 
 .product-default .product-label.label-hot {
-    background-color: red;
+    background-color: #d9232d;
+    border-radius: 5px;
 }
 
 .product-default .product-label.label-sale {
@@ -9042,7 +9043,6 @@ main .sticky-header .product-ratings:before {
 }
 
 .comment-container .comment-avatar {
-    flex: 1 0 auto;
     padding: 0 22px 5px 8px
 }
 

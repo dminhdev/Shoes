@@ -47,6 +47,7 @@
                     <th>Điện thoại</th>
                     <th>Trạng thái</th>
                     <th width="20%">Sản phẩm</th>
+                    <th>Số lượng</th>
                     <th>Ngày tạo</th>
                     <th>Ngày sửa</th>
                 </tr>
@@ -104,6 +105,7 @@
                             <span th:if="${order.status} == 5" class="badge badge-light">Đơn hàng bị hủy</span>
                         </td>
                         <td th:text="${order.product.name}"></td>
+                        <td th:text="${order.quantity}"></td>
                         <td>
                             <span th:text="${#dates.format(order.createdAt, 'dd-MM-yyyy HH:mm')}"></span>
                         </td>
@@ -128,7 +130,7 @@
     <script type="text/javascript" th:src="@{/adminlte/pagination/jquery.simplePagination.js}"></script>
     <script type="text/javascript" th:src="@{/adminlte/js/table.js}"></script>
     <script th:inline="javascript">
-        let id, name, phone, status, product, page;
+        let id, name, phone, status, product,quantity, page;
         $(function () {
             let vars = parseUrl();
             id = vars["id"] || ""
@@ -136,6 +138,7 @@
             phone = vars["phone"] || ""
             status = vars["status"] || ""
             product = vars["product"] || ""
+            quantity = vars["quantity"] || ""
             page = vars["page"] || "0"
 
             $('#id').val(id)
@@ -143,6 +146,7 @@
             $('#phone').val(phone)
             $('#status').val(status)
             $('#product').val(product)
+            $('#quantity').val(quantity)
             $('#page').val(page)
 
             pagination([[${totalPages}]],[[${currentPage}]])

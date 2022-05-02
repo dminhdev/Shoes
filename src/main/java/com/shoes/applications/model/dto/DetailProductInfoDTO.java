@@ -26,6 +26,8 @@ public class DetailProductInfoDTO {
 
     private int views;
 
+    private int quantity;
+
     private long totalSold;
 
     private ArrayList<String> productImages;
@@ -41,4 +43,6 @@ public class DetailProductInfoDTO {
     private Brand brand;
 
     private List<Comment> comments;
+
+
 }
