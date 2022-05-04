@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface Cart_ItemsService {
+public interface CartService {
 
     Cart_Items findCartItems(User id,String product_id);
 
@@ -14,7 +14,7 @@ public interface Cart_ItemsService {
 
     long getCountCartItemByUserId(long user_id);
 
-    Cart_Items createCartByUser(User user_id,Integer quantity, String product_id);
+    Cart_Items createCartByUser(User user_id, String product_id,Integer quantity);
 
     void updateCartByUser(User id,Integer quantity,String product_id);
 

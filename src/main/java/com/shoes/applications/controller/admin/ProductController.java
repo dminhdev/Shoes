@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
 @Controller
 public class ProductController {
 
-    private String xlsx = ".xlsx";
+    private final String xlsx = ".xlsx";
     private static final int BUFFER_SIZE = 4096;
     private static final String TEMP_EXPORT_DATA_DIRECTORY = "\\resources\\reports";
     private static final String EXPORT_DATA_REPORT_FILE_NAME = "Danh_Sach_San_pham";
@@ -198,7 +198,7 @@ public class ProductController {
             new File(filePath).mkdirs();
         }
         try (FileOutputStream fos = new FileOutputStream(file + "\\" + fileName + xlsx);
-             XSSFWorkbook workbook = new XSSFWorkbook();) {
+             XSSFWorkbook workbook = new XSSFWorkbook()) {
 
             XSSFSheet worksheet = workbook.createSheet("Product");
             worksheet.setDefaultColumnWidth(20);
@@ -300,7 +300,7 @@ public class ProductController {
         File file = new File(fullPath);
         if (file.exists()) {
             OutputStream os = null;
-            try(FileInputStream fis = new FileInputStream(file);) {
+            try(FileInputStream fis = new FileInputStream(file)) {
                 String mimeType = context.getMimeType(fullPath);
                 response.setContentType(mimeType);
                 response.setHeader("content-disposition", "attachment; filename=" + fileName + "." + type);

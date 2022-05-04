@@ -48,13 +48,13 @@
                                             <span th:text="${product.name}"></span>
                                         </h2>
                                         <h6>
-                                            <span th:text="${size}"></span>
+                                            <span th:text="'Size: '+${size}"></span>
                                         </h6>
 
                                     </div>
                                 </td><td>
-                                <div style="width: 80px">
-                                    <input name="quantity-product" type="number" class="form-control text-center number-quantity" th:value="${quantity}"/>
+                                <div style="width: 80px;margin-top: 5px">
+                                    <span id="quantity-product" class="text-center number-quantity" th:text="'x'+${quantity}"></span>
                                 </div>
                             </td>
                                 <td class="price-col"
@@ -65,19 +65,6 @@
                         </table>
                         <!-- Pricing Section-->
                         <div class="pricing childs">
-                            <div class="row">
-                                <dic class="col-md-6">
-                                    <h6 class="not-found-size" style="margin-top: 5px; color: #dc3545;"
-                                        th:styleappend="${notFoundSize} == true ? '' : 'display:none'">Size giày này đã hết. Vui
-                                        lòng chọn size khác.</h6>
-                                </dic>
-                                <div class="co-md-6">
-                                    <h6 class="not-found-quantity" style="margin-top: 5px; color: #dc3545;"
-                                        th:styleappend="${notFoundQuantity} == true ? '' : 'display:none'">Vui lòng nhập số lượng sản phẩm.</h6>
-                                </div>
-                            </div>
-
-
                             <div class="input-group" style="margin-top:30px">
                                 <input type="text" class="form-control" placeholder="Nhập mã khuyến mãi" id="in-coupon"
                                        th:value="${product.couponCode}">
@@ -89,8 +76,7 @@
                             </div>
                             <div class="coupon price-include">
                                 <div class="text">Tạm tính</div>
-                                <input class="form-control text-price-input" id="in-price" type="text"
-                                       th:value="${product.price}" readonly/>
+                                <input class="form-control text-price-input" id="in-price" type="text" readonly/>
                             </div>
                             <div class="coupon price-include">
                                 <div class="text">Khuyến mãi</div>
@@ -150,8 +136,6 @@
     </div><!-- End .container -->
 
     <div class="mb-6"></div><!-- margin -->
-    <!-- Modals-->
-    <th:block th:replace="~{fragment/size_choose_modal :: size-choose-modal}"></th:block>
 </main><!-- End .main -->
 
 <th:block id="js-resources">
@@ -160,11 +144,11 @@
         let quantity =  [[${quantity}]];
         let price = [[${product.price}]];
         let promotionValue = 0;
-        let totalPrice = price*quantity;
+        let totalPrice = price;
 
         $(".number-quantity").change(function (){
             $(".number-quantity").each(function(){
-                totalPrice= price*quantity-promotionValue;
+                totalPrice= price-promotionValue;
             })
             $('#in-total-price').val(totalPrice);
             $('#in-promotion-value').val(promotionValue);
@@ -173,16 +157,14 @@
             promotionValue = [[${product.promotionPrice}]];
             totalPrice = (price*quantity - promotionValue);
         }
-        $('#in-total-price').val(totalPrice);
+        $('#in-price').val(price*quantity);
+        $('#in-total-price').val(totalPrice*quantity);
         $('#in-promotion-value').val(promotionValue);
 
         let couponCode = [[${product.couponCode}]];
 
         let sizeVn = [[${sizeVn}]];
 
-        let sizeUs = [[${sizeUs}]];
-
-        let sizeCm = [[${sizeCm}]];
 
         $(function () {
             formatMoney();
@@ -190,53 +172,6 @@
             activeSize();
             sizeGuideRender();
         });
-
-        function render() {
-            for (let i = 0; i < sizeVn.length; i++) {
-                let sizeChoose = `
-            <div class="item" data-size="${sizeVn[i]}" data-id="${sizeVn[i]}">
-                ${sizeVn[i]}
-            </div>
-            `;
-
-                $('.size .select-filter').append(sizeChoose);
-            }
-            ;
-        };
-
-        function sizeGuideRender() {
-            let tr = '';
-            for (let i = 0; i < sizeVn.length; i++) {
-                tr += `
-            <tr>
-              <td>${sizeVn[i]}</td>
-              <td>${sizeUs[i]}</td>
-              <td>${sizeCm[i]}</td>
-            </tr>
-            `;
-            }
-            $('.side-guide-table tbody').html(tr);
-        }
-
-        function activeSize() {
-            let availableSizes = [[${availableSizes}]]
-
-            for (let i = 0; i < sizeVn.length; i++) {
-                if (sizeVn[i] == [[${size}]]) {
-                    $('.size-details').text(sizeVn[i])
-                    break;
-                }
-            }
-
-            $('.size .item').addClass('cross')
-            if (![[${notFoundSize}]]) {
-                $(`.item[data-size='${$('.size-details').text()}']`).addClass('size-choose').removeClass('cross');
-            }
-
-            for (let i = 0; i < availableSizes.length; i++) {
-                $(`.item[data-id='${availableSizes[i]}']`).removeClass('cross');
-            }
-        }
 
         $('#btn-apply-coupon').click(function () {
             let coupon = $('#in-coupon').val();
@@ -260,8 +195,8 @@
                     } else {
                         promotionValue = data.maximumDiscountValue;
                     }
-                    totalPrice = price - promotionValue;
-                    $('#in-price').val(price);
+                    totalPrice = price*quantity - promotionValue;
+                    $('#in-price').val(price*quantity);
                     $('#in-promotion-value').val(promotionValue);
                     $('#in-total-price').val(totalPrice);
                     formatMoney();
@@ -303,16 +238,6 @@
                 addressInvalid = $('#receiver_address').next();
                 addressInvalid.css('display', 'block');
                 addressInvalid.html('Vui lòng nhập địa chỉ nhận hàng');
-                isValid = false;
-            }
-            let size = $('.size-choose').data("id");
-            let quantity = $('#quantity-product').val();
-            if (size == null || size == "") {
-                $('.not-found-size').show();
-                isValid = false;
-            }
-            if (quantity == null || quantity == "" || quantity==0) {
-                $('.not-found-quantity').show();
                 isValid = false;
             }
 

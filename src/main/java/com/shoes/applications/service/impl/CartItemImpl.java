@@ -3,14 +3,14 @@ package com.shoes.applications.service.impl;
 import com.shoes.applications.entity.*;
 import com.shoes.applications.repository.CartItemRepository;
 import com.shoes.applications.repository.ProductRepository;
-import com.shoes.applications.service.Cart_ItemsService;
+import com.shoes.applications.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class CartItemImpl implements Cart_ItemsService {
+public class CartItemImpl implements CartService {
     @Autowired
     private CartItemRepository cartRepo;
 
@@ -33,7 +33,7 @@ public class CartItemImpl implements Cart_ItemsService {
         return cartRepo.getCountCartByUser(user_id);
     }
 
-    public Cart_Items createCartByUser(User user,Integer quantity, String product_id) {
+    public Cart_Items createCartByUser(User user, String product_id,Integer quantity) {
         Integer addQuantity = quantity;
         Product product = proRepo.findById(product_id).get();
         Cart_Items cartItem = cartRepo.findCartById(user.getId(),product.getId());
@@ -42,8 +42,8 @@ public class CartItemImpl implements Cart_ItemsService {
             cartItem.setQuantity(addQuantity);
         }else{
             cartItem = new Cart_Items();
-            cartItem.setUser(user);
-            cartItem.setProduct(product);
+            cartItem.setUser_id(user);
+            cartItem.setProduct_id(product);
             cartItem.setQuantity(quantity);
 
         }
@@ -61,8 +61,8 @@ public class CartItemImpl implements Cart_ItemsService {
             cartItem.setQuantity(addQuantity);
         }else{
             cartItem = new Cart_Items();
-            cartItem.setUser(user);
-            cartItem.setProduct(product);
+            cartItem.setUser_id(user);
+            cartItem.setProduct_id(product);
             cartItem.setQuantity(quantity);
 
         }

@@ -338,8 +338,8 @@
             `;
 
                 $('.size .select-filter').append(sizeChoose);
-            };
-        };
+            }
+        }
         function check_quantity(){
 
         }
@@ -401,7 +401,7 @@
         let product_id= [[${product.id}]];
         function addToCart(){
             quantity = $("#quantity-product"+ product_id).val();
-            url= "/cart/add/"+product_id+"/"+size+"/"+quantity
+            // url= "/cart/add/"+product_id+"/"+size+"/"+quantity
         }
 
         $('.add-cart').click(function() {
@@ -420,13 +420,12 @@
                     }
                     var myJSON = JSON.stringify(req);
                     $.ajax({
-                        url: "cart/add/pid="+[[${product.id}]]+"/"+size+"/"+quantity,
+                        url: "/api/cart/"+[[${product.id}]]+"/"+size+"/"+quantity,
                         type: 'POST',
                         data: myJSON,
                         contentType: "application/json; charset=utf-8",
                         success: function (data) {
                             toastr.success("Thêm vào giỏ hàng thành công");
-                            location.reload();
                         },
                         error: function (data) {
                             toastr.warning(data.responseJSON.message);

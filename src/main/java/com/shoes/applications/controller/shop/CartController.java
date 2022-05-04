@@ -5,9 +5,10 @@ import com.shoes.applications.entity.User;
 import com.shoes.applications.model.dto.DetailProductInfoDTO;
 import com.shoes.applications.repository.CartItemRepository;
 import com.shoes.applications.security.CustomUserDetails;
-import com.shoes.applications.service.Cart_ItemsService;
+import com.shoes.applications.service.CartService;
 import com.shoes.applications.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,25 +21,25 @@ import java.util.List;
 public class CartController {
 
     @Autowired
-    private Cart_ItemsService cartService;
+    private CartService cartService;
     @Autowired
     private ProductService productService;
 
 
-    @GetMapping("/api/cart/user/{id}")
+    @GetMapping("/cart")
     public ResponseEntity<Object> getItemCartByUser(Model model) {
         User user =((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
         List<Cart_Items> cartItems = cartService.listCartItems(user);
         model.addAttribute("cartItems",cartItems);
         return ResponseEntity.ok(cartItems);
     }
-    @PostMapping("/api/{pid}/{size}/{qty}")
+    @PostMapping("api/cart/{pid}/{size}/{qty}")
     public ResponseEntity<Object> addItemCart(@PathVariable("pid") String productId,
                                               @PathVariable("size") Integer size,
                                               @PathVariable("qty") Integer quantity ) {
         User user =((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
-        cartService.createCartByUser(user,quantity,productId);
-        return ResponseEntity.ok("Thêm sản phẩm vào giỏ thành công!");
+        Cart_Items cartItems =  cartService.createCartByUser(user,productId,quantity);
+        return ResponseEntity.ok(cartItems);
     }
     @PutMapping("/api/cart/update/{id}")
     public ResponseEntity<Object> updateItemCart(@PathVariable long id) {
