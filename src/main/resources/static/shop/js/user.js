@@ -186,7 +186,7 @@ function signedValidate(status = false, fullname = '',roles='') {
 </div>
 `;
         let SignedCart =`<a href="" data-toggle="modal" data-target="#CartModal" style="font-size:2.5rem;padding-top: 1rem;" class=" bi bi-cart cart-buy">
-                                <label id="count-itemCart" style="text-align:center;margin-left: -4px;float: right;border-radius: 10px;min-width: 18px;width: auto;height: 20px;padding: 2px 2px 2px 2px;background: red;color: #ffff;"></label>
+                                <label id="count-itemCart" style="text-align:center;margin-left: -4px;float: right;border-radius: 10px;min-width: 18px;width: auto;height: 20px;padding: 2px 2px 2px 2px;background: #ffff;color: #ffff;"></label>
                             </a>`;
         $('.cart-buy').replaceWith(SignedCart);
         $('.account-setting').replaceWith(signedLink);
@@ -195,7 +195,7 @@ function signedValidate(status = false, fullname = '',roles='') {
         let notSignedLink = `
               <a href="#" data-toggle="modal" data-target="#exampleModal" class="header-icon account-setting"><i class="icon-user-2"></i></a>
           `;
-        let notSignedCart=`<a href="#" style="font-size:2.5rem;padding-top: 1rem;" class=" bi bi-cart cart-buy"> </a>`;
+        let notSignedCart=`<a href="#" style="font-size:2.5rem;padding-top: 1rem;" class=" bi bi-cart cart-buy"></a>`;
         $('.account-setting').replaceWith(notSignedLink);
         $('.cart-buy').click(function() {
             if(isLogined==false){
