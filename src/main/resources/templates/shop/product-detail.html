@@ -116,11 +116,10 @@
                         <span th:unless="${canBuy}" style="color:#f04e40">Tạm hết hàng</span>
                     </div>
                     <hr class="divider">
+
                     <div class="btns">
-
-                        <div class="row btn-buy">
-
-                            <h5 class="ml-4 mt-4 mr-3">Chọn size :</h5>
+                        <div class="row">
+                            <h5 class="ml-3 mt-4 mr-3">Chọn size :</h5>
                             <div class="size-btn" data-toggle="modal" data-target="#modal-size-Choose">
                                 <button class="btn btn-primary size trans-btn">
                                     <span class="size-text">Size</span>
@@ -128,7 +127,9 @@
                                     <i class="fas dropdown-arrow"></i>
                                 </button>
                             </div>
-                            <h5 class="ml-5 mt-4 mr-3">Số lượng :</h5>
+                        </div>
+                        <div class="row">
+                            <h5 class="ml-3 mt-4 mr-3">Số lượng :</h5>
                             <div class="input-group number-spinner">
                                     <span class="input-group-btn input-group-btn-left">
                                         <button class="btn btn-default" data-dir="dwn"
@@ -142,10 +143,14 @@
                                                 class="bi bi-plus"></span></button>
                                     </span>
                             </div>
-                            <div class="buy-btn">
+                        </div>
+                        <div class="row btn-buy">
+                            <div class="col-md-6">
                                 <button class="btn btn-primary add-cart" th:classappend="${canBuy} == true ? '' : 'not-buy'" value="">
                                     Thêm vào giỏ hàng
                                 </button>
+                            </div>
+                            <div class="col-md-6 buy-btn">
                                 <button class="btn btn-primary buy-now" th:classappend="${canBuy} == true ? '' : 'not-buy'" value="">
                                     Mua ngay
                                 </button>

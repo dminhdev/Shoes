@@ -8442,21 +8442,6 @@ footer .contact-info-label {
     }
 }
 
-.add-cart {
-    padding: 11px 28px;
-    font-size: 1.4rem;
-    font-weight: 700;
-    letter-spacing: -.015em;
-    line-height: 24px
-}
-
-.add-cart:before {
-    font-size: 1.8rem;
-    line-height: 0;
-    vertical-align: middle;
-    margin-right: 8px;
-    font-weight: 900
-}
 
 .add-wishlist {
     display: inline-block;
