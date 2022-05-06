@@ -14,9 +14,9 @@ public interface CartService {
 
     long getCountCartItemByUserId(long user_id);
 
-    Cart_Items createCartByUser(User user_id, String product_id,Integer quantity);
+    Cart_Items createCartByUser(User user_id, String product_id,Integer quantity,Integer size);
 
-    void updateCartByUser(User id,Integer quantity,String product_id);
+    void updateCartByUser(User id, Integer quantity, String product_id, Integer size);
 
     void deleteCartByUser(Integer id);
 

@@ -29,23 +29,25 @@ public class CartController {
     @GetMapping("/cart")
     public ResponseEntity<Object> getItemCartByUser(Model model) {
         User user =((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
-        List<Cart_Items> cartItems = cartService.listCartItems(user);
-        model.addAttribute("cartItems",cartItems);
-        return ResponseEntity.ok(cartItems);
+        List<Cart_Items> ListcartItems = cartService.listCartItems(user);
+        model.addAttribute("cartItems",ListcartItems);
+        return ResponseEntity.ok(ListcartItems);
     }
     @PostMapping("api/cart/{pid}/{size}/{qty}")
     public ResponseEntity<Object> addItemCart(@PathVariable("pid") String productId,
                                               @PathVariable("size") Integer size,
                                               @PathVariable("qty") Integer quantity ) {
         User user =((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
-        Cart_Items cartItems =  cartService.createCartByUser(user,productId,quantity);
+        Cart_Items cartItems =  cartService.createCartByUser(user,productId,quantity,size);
         return ResponseEntity.ok(cartItems);
     }
-    @PutMapping("/api/cart/update/{id}")
-    public ResponseEntity<Object> updateItemCart(@PathVariable long id) {
+    @PutMapping("/api/cart/update/{pid}/{size}/{qty}")
+    public ResponseEntity<Object> updateItemCart(@PathVariable("pid") String productId,
+                                                 @PathVariable("size") Integer size,
+                                                 @PathVariable("qty") Integer quantity ) {
         User user =((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
-       // DetailProductInfoDTO  product = productService.getDetailProductById(id);
-        //cartService.updateCartByUser(user.getId(),product.getId());
+        DetailProductInfoDTO  product = productService.getDetailProductById(productId);
+        cartService.updateCartByUser(user,quantity,product.getId(),size);
         return ResponseEntity.ok("Sửa sản phẩm thành công!");
     }
     @DeleteMapping("/api/cart/delete/{id}")

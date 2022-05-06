@@ -144,21 +144,14 @@
         let quantity =  [[${quantity}]];
         let price = [[${product.price}]];
         let promotionValue = 0;
-        let totalPrice = price;
+        let totalPrice = price*quantity-promotionValue;
 
-        $(".number-quantity").change(function (){
-            $(".number-quantity").each(function(){
-                totalPrice= price-promotionValue;
-            })
-            $('#in-total-price').val(totalPrice);
-            $('#in-promotion-value').val(promotionValue);
-        })
         if ([[${product.couponCode}]] != null && [[${product.couponCode}]] != "") {
             promotionValue = [[${product.promotionPrice}]];
             totalPrice = (price*quantity - promotionValue);
         }
         $('#in-price').val(price*quantity);
-        $('#in-total-price').val(totalPrice*quantity);
+        $('#in-total-price').val(totalPrice);
         $('#in-promotion-value').val(promotionValue);
 
         let couponCode = [[${product.couponCode}]];
@@ -168,9 +161,6 @@
 
         $(function () {
             formatMoney();
-            render();
-            activeSize();
-            sizeGuideRender();
         });
 
         $('#btn-apply-coupon').click(function () {
@@ -240,12 +230,11 @@
                 addressInvalid.html('Vui lòng nhập địa chỉ nhận hàng');
                 isValid = false;
             }
-
             if (isValid) {
                 req = {
                     product_id: [[${product.id}]],
-                    size: size,
-                    quantity: quantity,
+                    size: [[${size}]],
+                    quantity: [[${quantity}]],
                     receiver_name: receiverName,
                     receiver_phone: receiverPhone,
                     receiver_address: receiverAddress,

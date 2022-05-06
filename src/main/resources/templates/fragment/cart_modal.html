@@ -1,0 +1,46 @@
+<th:block th:each="item : ${ListcartItems}">
+<div class="modal fade " id="CartModal" tabindex="-1" role="dialog"
+     aria-labelledby="CartModal"
+     aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Thông tin giỏ hàng</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row row-sparse">
+          <div class="col-md-12">
+            <form class="mb-1" id="CartForm">
+                <div class="row">
+                  <div class="col-md-3 thumbnails"><img class="img-fluid" th:src="@{${item.productImg}}" th:alt="${item.productName}"/></div>
+                  <div class="col-md-3 product-info"><span class="name" th:text="${item.productName}"> </span>
+                    <div class="size"><span th:text="${item.size}"> </span></div>
+                  </div>
+                  <div class="col-md-3 input-group number-spinner">
+                                    <span class="input-group-btn input-group-btn-left">
+                                        <button type="button" class="btn btn-default" data-dir="dwn"
+                                                style="border-top-right-radius: 0;border-bottom-right-radius: 0;background: #99999;"><span
+                                                class="bi bi-dash"></span></button>
+                                    </span>
+                    <input type="text" class="form-control text-center number-quantity" th:value="${item.quantity}">
+                    <span class="input-group-btn input-group-btn-right">
+                                        <button type="button" class="btn btn-default" data-dir="up"
+                                                style="border-top-left-radius: 0;border-bottom-left-radius: 0;background: #99999;"><span
+                                                class="bi bi-plus"></span></button>
+                                    </span>
+                  </div>
+                  <div class="col-md-3 price bid-price"><span class="text-price" th:text="${item.price}"></span> &#x20AB;</div>
+                </div>
+
+
+            </form>
+          </div>
+        </div><!-- End .row -->
+      </div>
+    </div>
+  </div>
+</div>
+</th:block>

@@ -33,7 +33,7 @@ public class CartItemImpl implements CartService {
         return cartRepo.getCountCartByUser(user_id);
     }
 
-    public Cart_Items createCartByUser(User user, String product_id,Integer quantity) {
+    public Cart_Items createCartByUser(User user, String product_id,Integer quantity,Integer size) {
         Integer addQuantity = quantity;
         Product product = proRepo.findById(product_id).get();
         Cart_Items cartItem = cartRepo.findCartById(user.getId(),product.getId());
@@ -45,6 +45,7 @@ public class CartItemImpl implements CartService {
             cartItem.setUser_id(user);
             cartItem.setProduct_id(product);
             cartItem.setQuantity(quantity);
+            cartItem.setSize(size);
 
         }
         cartRepo.save(cartItem);
@@ -52,7 +53,7 @@ public class CartItemImpl implements CartService {
     }
 
     @Override
-    public void updateCartByUser(User user,Integer quantity,String product_id) {
+    public void updateCartByUser(User user,Integer quantity,String product_id,Integer size) {
         Integer addQuantity = quantity;
         Product product = proRepo.findById(product_id).get();
         Cart_Items cartItem = cartRepo.findCartById(user.getId(),product.getId());
@@ -64,10 +65,10 @@ public class CartItemImpl implements CartService {
             cartItem.setUser_id(user);
             cartItem.setProduct_id(product);
             cartItem.setQuantity(quantity);
+            cartItem.setSize(size);
 
         }
         cartRepo.save(cartItem);
-
     }
 
     @Override

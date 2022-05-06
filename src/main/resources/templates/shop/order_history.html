@@ -34,7 +34,7 @@
 <body>
 <main id="main-content" class="container">
     <div class="row">
-        <div class="col-lg-9 main-content-wrapper">
+        <div class="col-lg-12 main-content-wrapper">
             <div class="main-content">
                 <div class="nav-tab">
                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
@@ -61,7 +61,7 @@
                                         <div class="thumbnails"><img class="img-fluid" th:src="@{${item.productImg}}" th:alt="${item.productName}"/></div>
                                         <div class="product-info"><span class="name" th:text="${item.productName}"></span>
                                             <div class="size"><span th:text="${item.sizeVn}"></span></div>
-                                            <div class="size">ssss<span th:text="${item.quantity}"></span></div>
+                                            <div><span th:text="${item.quantity}"></span></div>
                                         </div>
                                     </div>
                                     <div class="price bid-price"><span class="text-price" th:text="${item.totalPrice}"></span> &#x20AB;</div>
@@ -76,9 +76,10 @@
                                     <div class="product-info-wrapper">
                                         <div class="product-info">
                                             <a class="name" th:href="@{/tai-khoan/lich-su-giao-dich/{id}(id=${item.id})}" th:text="${item.productName}"></a>
+
                                             <div class="size">
-                                                 <span th:text="${item.sizeVn}"></span>
-                                                 <span th:text="${item.quantity}"></span>
+                                                <span th:text="${item.sizeVn}"></span>
+                                                <span th:text="${item.quantity}"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -130,6 +131,7 @@
                                         <div class="thumbnails"><img class="img-fluid" src="${order.productImg}" alt="${order.productName}"/></div>
                                         <div class="product-info"><span class="name">${order.productName}</span>
                                             <div class="size"> <span>${order.sizeVn}</span></div>
+                                            <span>${order.quantity}</span>
                                         </div>
                                     </div>
                                     <div class="price bid-price"><span class="text-price">${order.totalPrice}</span> &#x20AB;</div>
@@ -144,7 +146,7 @@
                                         <div class="product-info">
                                             <a class="name" href="/tai-khoan/lich-su-giao-dich/${order.id}">${order.productName}</a>
                                             <div class="size">
-                                                 <span>${order.sizeVn}</span>
+                                                 <span>Size: ${order.sizeVn}</span>
                                                  <span>Số lượng: ${order.quantity}</span>
                                             </div>
                                         </div>

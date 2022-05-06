@@ -37,7 +37,7 @@
 <!--                </div>-->
 <!--            </div>-->
 <!--        </div>-->
-        <div class="col-lg-9 main-content-wrapper">
+        <div class="col-lg-12 main-content-wrapper">
             <div class="main-content">
                 <div class="header"><a class="go-back-previous-page" href="/tai-khoan/lich-su-giao-dich"><i class="fas fa-chevron-left"></i> Trở lại</a>
                     <div class="order-status-wrapper">
@@ -63,8 +63,8 @@
                             <div class="phone" th:text="${order.receiverPhone}"></div>
                         </div>
                         <div class="price-wrapper">
-                            <div class="sub-price-wrapper price">Tạm tính<span><span class="text-price" th:text="${order.productPrice}"></span> &#x20AB;</span></div>
-                            <div class="shipping-price-wrapper price">Khuyến mãi<span><span class="text-price" th:text="${order.productPrice} - ${order.totalPrice}"></span> &#x20AB;</span></div>
+                            <div class="sub-price-wrapper price">Tạm tính<span><span class="text-price" th:text="${order.productPrice}*${order.quantity}"></span> &#x20AB;</span></div>
+                            <div class="shipping-price-wrapper price">Khuyến mãi<span><span class="text-price" th:text="${order.productPrice}*${order.quantity} - ${order.totalPrice}"></span> &#x20AB;</span></div>
                             <div class="total-price-wrapper price">Thành tiền<span class="total-price"><span class="text-price" th:text="${order.totalPrice}"></span> &#x20AB;</span></div>
                         </div>
                     </div>
@@ -87,8 +87,8 @@
                                 <div class="phone" th:text="${order.receiverPhone}"></div>
                             </div>
                             <div class="price-wrapper">
-                                <div class="sub-price-wrapper price">Tạm tính<span><span class="text-price" th:text="${order.productPrice}"></span> &#x20AB;</span></div>
-                                <div class="shipping-price-wrapper price">Khuyến mãi<span><span class="text-price" th:text="${order.productPrice} - ${order.totalPrice}"></span> &#x20AB;</span></div>
+                                <div class="sub-price-wrapper price">Tạm tính<span><span class="text-price" th:text="${order.productPrice}*${order.quantity}"></span> &#x20AB;</span></div>
+                                <div class="shipping-price-wrapper price">Khuyến mãi<span><span class="text-price" th:text="${order.productPrice}*${order.quantity} - ${order.totalPrice}"></span> &#x20AB;</span></div>
                                 <div class="total-price-wrapper price">Thành tiền<span class="total-price"><span class="text-price" th:text="${order.totalPrice}"></span> &#x20AB;</span></div>
                             </div>
                         </div>
