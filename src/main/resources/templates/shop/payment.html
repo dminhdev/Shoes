@@ -66,8 +66,7 @@
                         <!-- Pricing Section-->
                         <div class="pricing childs">
                             <div class="input-group" style="margin-top:30px">
-                                <input type="text" class="form-control" placeholder="Nhập mã khuyến mãi" id="in-coupon"
-                                       th:value="${product.couponCode}">
+                                <input type="text" class="form-control" placeholder="Nhập mã khuyến mãi" id="in-coupon" >
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" id="btn-apply-coupon">Áp
                                         dụng
@@ -80,8 +79,7 @@
                             </div>
                             <div class="coupon price-include">
                                 <div class="text">Khuyến mãi</div>
-                                <input class="form-control text-price-input" id="in-promotion-value" type="text"
-                                       readonly/>
+                                <input class="form-control text-price-input" id="in-promotion-value" type="text" readonly/>
                             </div>
                             <div class="coupon price-include">
                                 <div class="text">Tổng thanh toán</div>
@@ -142,19 +140,19 @@
     <script th:src="@{/shop/js/size-choose.js}"></script>
     <script th:inline="javascript">
         let quantity =  [[${quantity}]];
-        let price = [[${product.price}]];
+        let price = [[${product.price}]]*quantity;
         let promotionValue = 0;
-        let totalPrice = price*quantity-promotionValue;
+        let totalPrice = price-promotionValue;
 
         if ([[${product.couponCode}]] != null && [[${product.couponCode}]] != "") {
-            promotionValue = [[${product.promotionPrice}]];
-            totalPrice = (price*quantity - promotionValue);
+            price = [[${product.promotionPrice}]]*quantity;
+            totalPrice = (price - promotionValue);
         }
-        $('#in-price').val(price*quantity);
+        $('#in-price').val(price);
         $('#in-total-price').val(totalPrice);
         $('#in-promotion-value').val(promotionValue);
 
-        let couponCode = [[${product.couponCode}]];
+        let couponCode;
 
         let sizeVn = [[${sizeVn}]];
 
@@ -179,14 +177,17 @@
                     let tmp = data.discountValue;
                     if (data.discountType == 1) {
                         tmp = price * data.discountValue / 100;
-                    }
-                    if (tmp < data.maximumDiscountValue) {
+                        if (tmp < data.maximumDiscountValue) {
+                            promotionValue = quantity*tmp;
+                        } else {
+                            promotionValue = quantity*data.maximumDiscountValue;
+                        }
+                    }else if (data.discountType == 2){
                         promotionValue = tmp;
-                    } else {
-                        promotionValue = data.maximumDiscountValue;
                     }
-                    totalPrice = price*quantity - promotionValue;
-                    $('#in-price').val(price*quantity);
+
+                    totalPrice = price - promotionValue;
+                    $('#in-price').val(price);
                     $('#in-promotion-value').val(promotionValue);
                     $('#in-total-price').val(totalPrice);
                     formatMoney();
