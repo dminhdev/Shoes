@@ -16,7 +16,7 @@ public interface CartItemRepository extends JpaRepository<Cart_Items, Integer>{
     Cart_Items findCartById(long user_id,String product_id,Integer size);
 
     @Query(value = "select a.id,b.name,a.product_id,a.user_id,b.images,a.quantity,a.size,b.price from cart_items a inner join product b on a.product_id = b.id where a.user_id  = ?1 ", nativeQuery = true)
-    List<Cart_Items> getCartByUser(long user_id);
+    List<Cart_Items> listCartByUser(long user_id);
 
     @Query(value = "select sum(quantity) as 'sum_product_in_cart_of_user' from cart_items where user_id  = ?1 ", nativeQuery = true)
     Long getCountCartByUser(long user_id);

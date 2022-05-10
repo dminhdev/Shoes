@@ -23,15 +23,16 @@ public class CartController {
     @Autowired
     private CartService cartService;
     @Autowired
+    private CartItemRepository cartItemRepository;
+    @Autowired
     private ProductService productService;
 
-
     @GetMapping("/cart")
-    public ResponseEntity<Object> getItemCartByUser(Model model) {
+    public String getItemCartByUser(Model model) {
         User user =((CustomUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
         List<Cart_Items> ListcartItems = cartService.listCartItems(user);
-        model.addAttribute("cartItems",ListcartItems);
-        return ResponseEntity.ok(ListcartItems);
+        model.addAttribute("ListcartItems",ListcartItems);
+        return "shop/cartItem";
     }
     @PostMapping("api/cart/{pid}/{size}/{qty}")
     public ResponseEntity<Object> addItemCart(@PathVariable("pid") String productId,

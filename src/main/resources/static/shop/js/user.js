@@ -190,13 +190,16 @@ function signedValidate(status = false, fullname = '',roles='') {
             type: 'GET',
             contentType: 'application/json',
             success: function (data) {
-                $('#count-itemCart').append(`${data}`)
+                if(data != null){
+                    $('.cart-buy').append(`<label id="count-itemCart" style="text-align:center;margin-left: -4px;float: right;border-radius: 10px;min-width: 18px;width: auto;height: 20px;padding: 1px 2px 2px 2px;background-color:red;color: white">${data}</label>`)
+                }else {
+                    $('.cart-buy').append('<label></label>')
+                }
             }
         })
 
-        let SignedCart =`<a href="" data-toggle="modal" data-target="#CartModal" style="font-size:2.5rem;padding-top: 1rem;" class=" bi bi-cart cart-buy">
-                                <label id="count-itemCart" style="text-align:center;margin-left: -4px;float: right;border-radius: 10px;min-width: 18px;width: auto;height: 20px;padding: 1px 2px 2px 2px;background: red;color: #ffff;"></label>
-                            </a>`;
+        let SignedCart =`<a href="/cart"  style="font-size:2.5rem;padding-top: 1rem;" class=" bi bi-cart cart-buy"></a>`;
+
         $('.cart-buy').replaceWith(SignedCart);
         $('.account-setting').replaceWith(signedLink);
     }else {

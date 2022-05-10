@@ -42,7 +42,6 @@
 
     <!-- Login-Modal -->
     <th:block th:replace="~{fragment/login_modal :: login_modal}"></th:block>
-    <th:block th:replace="~{fragment/cart_modal :: cart-modal}"></th:block>
 
     <!-- FOOTER -->
     <th:block th:replace="~{fragment/footer :: ${footer}}"></th:block>
@@ -91,23 +90,6 @@
         }
         btn.closest('.number-spinner').find('input').val(newVal);
     });
-
-    $('.cart-test').click(function () {
-        $.ajax({
-            url: '/cart',
-            type: 'GET',
-            contentType: "application/json; charset=utf-8",
-            success: function (data) {
-
-                //$('#CartModal').modal('show');
-            },
-            error: function (error) {
-                toastr.warning('có lỗi xảy ra'+error);
-            },
-        });
-    })
-
-
 
 
     function formatMoney() {

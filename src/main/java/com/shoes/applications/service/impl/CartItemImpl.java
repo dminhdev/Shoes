@@ -14,7 +14,6 @@ import java.util.List;
 public class CartItemImpl implements CartService {
     @Autowired
     private CartItemRepository cartRepo;
-
     @Autowired
     private ProductRepository proRepo;
 
@@ -25,7 +24,7 @@ public class CartItemImpl implements CartService {
     }
 
     public List<Cart_Items> listCartItems(User user){
-        return cartRepo.getCartByUser(user.getId());
+        return cartRepo.listCartByUser(user.getId());
     }
 
 
@@ -36,6 +35,7 @@ public class CartItemImpl implements CartService {
 
     public Cart_Items createCartByUser(User user, String product_id,Integer quantity,Integer size) {
         Integer addQuantity = quantity;
+        Product product = proRepo.findById(product_id).get();
         Cart_Items cartItem = cartRepo.findCartById(user.getId(),product_id,size);
 
         if(cartItem !=null){
@@ -44,7 +44,7 @@ public class CartItemImpl implements CartService {
         }else{
             cartItem = new Cart_Items();
             cartItem.setUser_id(user);
-            cartItem.setProduct_id(product_id);
+            cartItem.setProduct_id(product);
             cartItem.setQuantity(quantity);
             cartItem.setSize(size);
 
@@ -56,6 +56,7 @@ public class CartItemImpl implements CartService {
     @Override
     public void updateCartByUser(User user,Integer quantity,String product_id,Integer size) {
         Integer addQuantity = quantity;
+        Product product = proRepo.findById(product_id).get();
         Cart_Items cartItem = cartRepo.findCartById(user.getId(),product_id,size);
         if(cartItem !=null){
             addQuantity = cartItem.getQuantity()+ quantity;
@@ -63,7 +64,7 @@ public class CartItemImpl implements CartService {
         }else{
             cartItem = new Cart_Items();
             cartItem.setUser_id(user);
-            cartItem.setProduct_id(product_id);
+            cartItem.setProduct_id(product);
             cartItem.setQuantity(quantity);
             cartItem.setSize(size);
 
