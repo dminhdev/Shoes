@@ -12,12 +12,12 @@ import java.util.List;
 
 @Repository
 public interface CartItemRepository extends JpaRepository<Cart_Items, Integer>{
-    @Query(value = "select cart_items.user_id,cart_items.product_id from cart_items inner join product on cart_items.product_id=product.id inner join users on cart_items.user_id=users.id  where cart_items.user_id = ?1 and cart_items.product_id= ?1 ", nativeQuery = true)
-    Cart_Items findCartById(long id,String product_id);
+    @Query(value = "select * from cart_items p where p.user_id = ?1 and p.product_id= ?2 and p.size= ?3 ", nativeQuery = true)
+    Cart_Items findCartById(long user_id,String product_id,Integer size);
 
-    @Query(value = "select cart_items.id,product.name as 'productName' ,product.productImages as 'productImg',cart_items.quantity,cart_items.size,product.price as 'productPrice' from cart_items inner join product on cart_items.product_id=product.id inner join users on cart_items.user_id=users.id where user_id  = ? ", nativeQuery = true)
+    @Query(value = "select a.id,b.name,a.product_id,a.user_id,b.images,a.quantity,a.size,b.price from cart_items a inner join product b on a.product_id = b.id where a.user_id  = ?1 ", nativeQuery = true)
     List<Cart_Items> getCartByUser(long user_id);
 
-    @Query(value = "select count(id) as 'sum_product_in_cart_of_user' from cart_items where user_id  = ? ", nativeQuery = true)
+    @Query(value = "select sum(quantity) as 'sum_product_in_cart_of_user' from cart_items where user_id  = ?1 ", nativeQuery = true)
     Long getCountCartByUser(long user_id);
 }

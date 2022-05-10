@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public interface CartService {
 
-    Cart_Items findCartItems(User id,String product_id);
+    Cart_Items findCartItems(User user_id,String product_id,Integer size);
 
     List<Cart_Items> listCartItems(User user_id);
 
@@ -16,9 +16,9 @@ public interface CartService {
 
     Cart_Items createCartByUser(User user_id, String product_id,Integer quantity,Integer size);
 
-    void updateCartByUser(User id, Integer quantity, String product_id, Integer size);
+    void updateCartByUser(User user_id, Integer quantity, String product_id, Integer size);
 
-    void deleteCartByUser(Integer id);
+    void deleteCartByUser(Integer user_id);
 
 
 }

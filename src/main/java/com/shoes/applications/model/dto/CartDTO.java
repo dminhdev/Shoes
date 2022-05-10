@@ -1,7 +1,15 @@
 package com.shoes.applications.model.dto;
 
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.List;
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
 public class CartDTO {
     private long id;
     private String product_id;

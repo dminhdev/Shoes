@@ -4,6 +4,7 @@ import com.shoes.applications.entity.*;
 import com.shoes.applications.repository.CartItemRepository;
 import com.shoes.applications.repository.ProductRepository;
 import com.shoes.applications.service.CartService;
+import com.shoes.applications.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,8 +20,8 @@ public class CartItemImpl implements CartService {
 
 
     @Override
-    public Cart_Items findCartItems(User id, String product_id) {
-        return cartRepo.findCartById(id.getId(),product_id);
+    public Cart_Items findCartItems(User id, String product_id,Integer size) {
+        return cartRepo.findCartById(id.getId(),product_id,size);
     }
 
     public List<Cart_Items> listCartItems(User user){
@@ -35,15 +36,15 @@ public class CartItemImpl implements CartService {
 
     public Cart_Items createCartByUser(User user, String product_id,Integer quantity,Integer size) {
         Integer addQuantity = quantity;
-        Product product = proRepo.findById(product_id).get();
-        Cart_Items cartItem = cartRepo.findCartById(user.getId(),product.getId());
+        Cart_Items cartItem = cartRepo.findCartById(user.getId(),product_id,size);
+
         if(cartItem !=null){
             addQuantity = cartItem.getQuantity()+ quantity;
             cartItem.setQuantity(addQuantity);
         }else{
             cartItem = new Cart_Items();
             cartItem.setUser_id(user);
-            cartItem.setProduct_id(product);
+            cartItem.setProduct_id(product_id);
             cartItem.setQuantity(quantity);
             cartItem.setSize(size);
 
@@ -55,15 +56,14 @@ public class CartItemImpl implements CartService {
     @Override
     public void updateCartByUser(User user,Integer quantity,String product_id,Integer size) {
         Integer addQuantity = quantity;
-        Product product = proRepo.findById(product_id).get();
-        Cart_Items cartItem = cartRepo.findCartById(user.getId(),product.getId());
+        Cart_Items cartItem = cartRepo.findCartById(user.getId(),product_id,size);
         if(cartItem !=null){
             addQuantity = cartItem.getQuantity()+ quantity;
             cartItem.setQuantity(addQuantity);
         }else{
             cartItem = new Cart_Items();
             cartItem.setUser_id(user);
-            cartItem.setProduct_id(product);
+            cartItem.setProduct_id(product_id);
             cartItem.setQuantity(quantity);
             cartItem.setSize(size);
 

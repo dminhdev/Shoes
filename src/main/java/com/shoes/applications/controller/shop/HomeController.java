@@ -34,6 +34,8 @@ public class HomeController {
     private ProductService productService;
 
     @Autowired
+    private CartService cartService;
+    @Autowired
     private BrandService brandService;
 
     @Autowired
@@ -70,6 +72,7 @@ public class HomeController {
         //Lấy 5 bài viết mới nhất
         List<Post> posts = postService.getLatesPost();
         model.addAttribute("posts", posts);
+
 
         return "shop/index";
     }

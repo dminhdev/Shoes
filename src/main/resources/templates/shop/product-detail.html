@@ -393,16 +393,6 @@
                 }, 500);
             }
         })
-        $(document).ready(function(){
-            $("#add-cart").on("click",function (e){
-                addToCart();
-            });
-        });
-        let product_id= [[${product.id}]];
-        function addToCart(){
-            quantity = $("#quantity-product"+ product_id).val();
-            // url= "/cart/add/"+product_id+"/"+size+"/"+quantity
-        }
 
         $('.add-cart').click(function() {
             if (isLogined == true) {
@@ -426,6 +416,7 @@
                         contentType: "application/json; charset=utf-8",
                         success: function (data) {
                             toastr.success("Thêm vào giỏ hàng thành công");
+                            setTimeout(() => location.reload(), 500);
                         },
                         error: function (data) {
                             toastr.warning(data.responseJSON.message);

@@ -33,7 +33,7 @@
     </style>
 </head>
 <body>
-<div class="page-wrapper">
+
     <!-- HEADER -->
     <th:block th:replace="~{fragment/header :: ${header}}"></th:block>
 
@@ -42,6 +42,7 @@
 
     <!-- Login-Modal -->
     <th:block th:replace="~{fragment/login_modal :: login_modal}"></th:block>
+    <th:block th:replace="~{fragment/cart_modal :: cart-modal}"></th:block>
 
     <!-- FOOTER -->
     <th:block th:replace="~{fragment/footer :: ${footer}}"></th:block>
@@ -90,38 +91,18 @@
         }
         btn.closest('.number-spinner').find('input').val(newVal);
     });
-    $('.cart-details').click(function() {
-        if (isLogined == true) {
-            location.href = "/lich-su-giao-dich";
-        } else {
-            toastr.warning("Vui lòng đăng nhập để đặt hàng");
-            setTimeout(function() {
-                $('#exampleModal').modal('show');
-            }, 500);
-        }
-    })
 
-    function getCountItemsCart() {
-        $.ajax({
-            url: '/api/user/count/cartItems',
-            type: 'GET',
-            contentType: 'application/json',
-            success: function (data) {
-                $('#count-itemCart').append(`
-                        <strong>${data}</strong>`)
-            }
-        })
-    }
-    $('.cart-buy').click(function () {
+    $('.cart-test').click(function () {
         $.ajax({
             url: '/cart',
             type: 'GET',
             contentType: "application/json; charset=utf-8",
             success: function (data) {
-                $('#CartModal').modal('show');
+
+                //$('#CartModal').modal('show');
             },
-            error: function (data) {
-                toastr.warning(data.responseJSON.message);
+            error: function (error) {
+                toastr.warning('có lỗi xảy ra'+error);
             },
         });
     })

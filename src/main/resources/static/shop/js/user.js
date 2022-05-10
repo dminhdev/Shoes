@@ -185,8 +185,17 @@ function signedValidate(status = false, fullname = '',roles='') {
           </ul><!-- End Profile Dropdown Items -->
 </div>
 `;
+        $.ajax({
+            url: '/api/user/count/cartItems',
+            type: 'GET',
+            contentType: 'application/json',
+            success: function (data) {
+                $('#count-itemCart').append(`${data}`)
+            }
+        })
+
         let SignedCart =`<a href="" data-toggle="modal" data-target="#CartModal" style="font-size:2.5rem;padding-top: 1rem;" class=" bi bi-cart cart-buy">
-                                <label id="count-itemCart" style="text-align:center;margin-left: -4px;float: right;border-radius: 10px;min-width: 18px;width: auto;height: 20px;padding: 2px 2px 2px 2px;background: #ffff;color: #ffff;"></label>
+                                <label id="count-itemCart" style="text-align:center;margin-left: -4px;float: right;border-radius: 10px;min-width: 18px;width: auto;height: 20px;padding: 1px 2px 2px 2px;background: red;color: #ffff;"></label>
                             </a>`;
         $('.cart-buy').replaceWith(SignedCart);
         $('.account-setting').replaceWith(signedLink);
