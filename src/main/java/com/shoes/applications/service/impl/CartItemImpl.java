@@ -73,6 +73,12 @@ public class CartItemImpl implements CartService {
     }
 
     @Override
+    public void deleteCart(Integer[] ids) {
+        for (Integer id : ids) {
+            cartRepo.deleteById(id);
+        }
+    }
+    @Override
     public void deleteCartByUser(Integer id) {
         cartRepo.deleteById(id);
     }

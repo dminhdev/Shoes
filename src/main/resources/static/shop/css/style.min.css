@@ -11767,3 +11767,32 @@ section {
         border-left: 1px solid #eaedf1;
     }
 }
+.main-content {
+    border-right: 1px solid #dee2e6;
+}
+.list-itemcart{
+    padding-bottom: 15px;
+}
+.checkItem{
+    height: 20px;
+    width: 20px;
+    padding-right: 5px;
+}
+.product-img .img-fluid{
+    max-width: 100px;
+}
+.product-quantity{
+    padding: 20px;
+}
+.product-price{
+    padding: 20px;
+}
+.cart-product-info{
+    padding: 5px;
+}
+.actions .a{
+    color:#555;
+}
+.product-price .number-price{
+    color:#e24d55;
+}

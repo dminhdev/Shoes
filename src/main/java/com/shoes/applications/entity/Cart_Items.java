@@ -1,4 +1,6 @@
 package com.shoes.applications.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,9 +22,11 @@ public class Cart_Items {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "product_id")
     private Product product_id;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "user_id")
     private User user_id;
 

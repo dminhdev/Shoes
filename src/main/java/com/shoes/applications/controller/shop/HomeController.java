@@ -110,8 +110,6 @@ public class HomeController {
 
         //Lấy danh sách size giầy
         model.addAttribute("sizeVn", SIZE_VN);
-        model.addAttribute("sizeUs", SIZE_US);
-        model.addAttribute("sizeCm", SIZE_CM);
 
         return "shop/product-detail";
     }
@@ -154,6 +152,29 @@ public class HomeController {
 
         return "shop/payment";
     }
+
+//    @GetMapping("/cart")
+//    public String getListItemCartPage(Model model, @RequestParam String id,@RequestParam int size,@RequestParam int quantity){
+//
+//        //Lấy danh sách chi tiết sản phẩm
+//        List<Cart_Items> listItem = new ArrayList<Cart_Items>();
+//        try {
+//
+//        } catch (NotFoundException ex) {
+//            return "error/404";
+//        } catch (Exception ex) {
+//            return "error/500";
+//        }
+//       // model.addAttribute("product", product);
+//
+//
+//        //Lấy danh sách size
+//        model.addAttribute("sizeVn", SIZE_VN);
+//        model.addAttribute("size", size);
+//        model.addAttribute("quantity", quantity);
+//
+//        return "shop/payment";
+//    }
 
     @PostMapping("/api/orders")
     public ResponseEntity<Object> createOrder(@Valid @RequestBody CreateOrderRequest createOrderRequest) {

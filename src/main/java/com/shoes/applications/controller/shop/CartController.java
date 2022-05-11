@@ -51,8 +51,13 @@ public class CartController {
         cartService.updateCartByUser(user,quantity,product.getId(),size);
         return ResponseEntity.ok("Sửa sản phẩm thành công!");
     }
+    @DeleteMapping("/api/cart/delete")
+    public ResponseEntity<Object> deleteItemCart(@RequestBody Integer[] ids) {
+        cartService.deleteCart(ids);
+        return ResponseEntity.ok("Xóa sản phẩm thành công!");
+    }
     @DeleteMapping("/api/cart/delete/{id}")
-    public ResponseEntity<Object> deleteItemCart(@PathVariable int id) {
+    public ResponseEntity<Object> deleteItemCartByID(@PathVariable int id) {
         cartService.deleteCartByUser(id);
         return ResponseEntity.ok("Xóa sản phẩm thành công!");
     }

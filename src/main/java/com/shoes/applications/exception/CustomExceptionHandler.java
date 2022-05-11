@@ -18,8 +18,6 @@ import java.util.Locale;
 
 @RestControllerAdvice
 public class CustomExceptionHandler {
-
-    @Qualifier("messageSource")
     @Autowired
     private MessageSource msgSource;
 
