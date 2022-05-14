@@ -11782,7 +11782,7 @@ section {
     max-width: 100px;
 }
 .product-quantity{
-    padding: 20px;
+
 }
 .product-price{
     padding: 20px;
@@ -11791,7 +11791,9 @@ section {
     padding: 5px;
 }
 .actions .a{
-    color:#555;
+    padding-top: 12px;
+    font-size: 2.1rem;
+    padding-left: 0;
 }
 .product-price .number-price{
     color:#e24d55;

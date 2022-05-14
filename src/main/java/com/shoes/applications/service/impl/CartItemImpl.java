@@ -55,20 +55,9 @@ public class CartItemImpl implements CartService {
 
     @Override
     public void updateCartByUser(User user,Integer quantity,String product_id,Integer size) {
-        Integer addQuantity = quantity;
         Product product = proRepo.findById(product_id).get();
         Cart_Items cartItem = cartRepo.findCartById(user.getId(),product_id,size);
-        if(cartItem !=null){
-            addQuantity = cartItem.getQuantity()+ quantity;
-            cartItem.setQuantity(addQuantity);
-        }else{
-            cartItem = new Cart_Items();
-            cartItem.setUser_id(user);
-            cartItem.setProduct_id(product);
-            cartItem.setQuantity(quantity);
-            cartItem.setSize(size);
-
-        }
+        cartItem.setQuantity(quantity);
         cartRepo.save(cartItem);
     }
 
