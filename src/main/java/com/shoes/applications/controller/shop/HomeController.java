@@ -33,8 +33,6 @@ public class HomeController {
     @Autowired
     private ProductService productService;
 
-    @Autowired
-    private CartService cartService;
 
     @Autowired
     private BrandService brandService;
@@ -153,28 +151,28 @@ public class HomeController {
         return "shop/payment";
     }
 
-//    @GetMapping("/cart")
-//    public String getListItemCartPage(Model model, @RequestParam String id,@RequestParam int size,@RequestParam int quantity){
-//
-//        //Lấy danh sách chi tiết sản phẩm
-//        List<Cart_Items> listItem = new ArrayList<Cart_Items>();
-//        try {
-//
-//        } catch (NotFoundException ex) {
-//            return "error/404";
-//        } catch (Exception ex) {
-//            return "error/500";
-//        }
-//       // model.addAttribute("product", product);
-//
-//
-//        //Lấy danh sách size
-//        model.addAttribute("sizeVn", SIZE_VN);
-//        model.addAttribute("size", size);
-//        model.addAttribute("quantity", quantity);
-//
-//        return "shop/payment";
-//    }
+    @GetMapping("/api/cart")
+    public String getListItemCartPage(Model model, @RequestParam String id,@RequestParam int size,@RequestParam int quantity){
+
+        //Lấy danh sách chi tiết sản phẩm
+        List<Cart_Items> listItem = new ArrayList<Cart_Items>();
+        try {
+
+        } catch (NotFoundException ex) {
+            return "error/404";
+        } catch (Exception ex) {
+            return "error/500";
+        }
+       // model.addAttribute("product", product);
+
+
+        //Lấy danh sách size
+        model.addAttribute("sizeVn", SIZE_VN);
+        model.addAttribute("size", size);
+        model.addAttribute("quantity", quantity);
+
+        return "shop/payment";
+    }
 
     @PostMapping("/api/orders")
     public ResponseEntity<Object> createOrder(@Valid @RequestBody CreateOrderRequest createOrderRequest) {
