@@ -42,7 +42,7 @@
                         <div class="itemcart-info col-md-12">
                             <th:block th:each="item : ${ListcartItems}">
                                 <div class="row pb-5">
-                                    <div class="checkItem col-md-1"><input th:id="${item.id}" name="checkitems" class="form-check-input checkItem" type="checkbox" th:price="${item.product_id.salePrice}*${item.quantity}" value=""></div>
+                                    <div class="checkItem col-md-1"><input th:id="${item.id}" th:product-id="${item.product_id.id}" th:size="${item.size}" th:quantity="${item.quantity}" name="checkitems" class="form-check-input checkItem" type="checkbox" th:price="${item.product_id.salePrice}*${item.quantity}" value=""></div>
                                     <div class="product-image col-md-2"><img th:src="@{${item.product_id.images[0]}}" style="width: 80px;height: 80px"></div>
                                     <div class="col-md-3 cart-product-info">
                                         <label th:for="${item.id}" class="product-name" th:text="${item.product_id.name}" ></label>
@@ -50,13 +50,13 @@
                                     </div>
                                     <div class="col-md-3 input-group number-spinner product-quantity" style="margin-left:0">
                                         <span class="input-group-btn input-group-btn-left">
-                                            <button class="btn btn-default" data-dir="dwn"
+                                            <button th:data-id="${item.product_id.id}" th:data-size="${item.size}" class="update-quantity btn btn-default" data-dir="dwn"
                                                     style="border-top-right-radius: 0;border-bottom-right-radius: 0;"><span
                                                     class="bi bi-dash"></span></button>
                                         </span>
                                             <input id="quantity-product" type="text" class="form-control text-center number-quantity" th:data-quantity="${item.quantity}" th:value="${item.quantity}"/>
                                             <span class="input-group-btn input-group-btn-right">
-                                            <button class="btn btn-default" data-dir="up"
+                                            <button th:data-id="${item.product_id.id}" th:data-size="${item.size}" class="update-quantity btn btn-default" data-dir="up"
                                                     style="border-top-left-radius: 0;border-bottom-left-radius: 0;background: #99999;"><span
                                                     class="bi bi-plus"></span></button>
                                         </span>
@@ -64,7 +64,7 @@
                                     <div class="product-price col-md-2" th:text="${item.product_id.salePrice+' đ'}"></div>
 
                                     <div class="actions-cart col-md-1">
-                                        <a href="#" th:data-id="${item.product_id.id}" th:data-size="${item.size}" class="on-default update-product"><i class="ri-save-3-fill"></i></a>
+                                        <a href="#" th:data-id="${item.product_id.id}" th:data-size="${item.size}" class="on-default update-product"><i class="ri-checkbox-circle-line"></i></a>
                                         <a href="#" th:data-id="${item.id}" class="on-default remove-row delete-product"><i class="far fa-trash-alt"></i></a>
 
                                     </div>
@@ -122,6 +122,17 @@
 
         $('#list-itemcart :checkbox').change(calcAndShowTotal).change();
 
+        const btn = document.querySelector('#btn-buy-now');
+        $('#btn-buy-now').click(function (){
+            $('#list-itemcart :checkbox:checked').each(function() {
+                let productid =$(this).attr('product-id');
+                let quantity =$(this).attr('quantity');
+                let size =$(this).attr('size');
+                location.href = "/dat-hang?id="+productid+"&size="+size+"&quantity="+quantity;
+
+            });
+        });
+
         $('.buy-now').click(function() {
             if (isLogined == true) {
                 //let quantity = $('#quantity-product').val();
@@ -133,7 +144,28 @@
                 }, 500);
             }
         })
-
+        $('.update-quantity').on("click",function (){
+            let id = $(this).data('id');
+            let size = $(this).data('size');
+            let quantity = $('.number-quantity').val();
+            req = {
+                product_id: id,
+                size: size,
+                quantity: quantity,
+            }
+            var myJSON = JSON.stringify(req);
+            $.ajax({
+                url: "/api/cart/update/"+id+"/"+size+"/"+quantity,
+                type: 'PUT',
+                data: myJSON,
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                },
+                error: function (data) {
+                    toastr.warning("Lỗi");
+                }
+            });
+        });
         $('.update-product').on("click",function (){
             let id = $(this).data('id');
             let size = $(this).data('size');
