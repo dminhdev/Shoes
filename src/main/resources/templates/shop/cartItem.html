@@ -42,13 +42,13 @@
                         <div class="itemcart-info col-md-12">
                             <th:block th:each="item : ${ListcartItems}">
                                 <div class="row pb-5">
-                                    <div class="checkItem col-md-1"><input th:id="${item.id}" class="form-check-input checkItem" type="checkbox" th:price="${item.product_id.salePrice}*${item.quantity}" value=""></div>
+                                    <div class="checkItem col-md-1"><input th:id="${item.id}" name="checkitems" class="form-check-input checkItem" type="checkbox" th:price="${item.product_id.salePrice}*${item.quantity}" value=""></div>
                                     <div class="product-image col-md-2"><img th:src="@{${item.product_id.images[0]}}" style="width: 80px;height: 80px"></div>
                                     <div class="col-md-3 cart-product-info">
                                         <label th:for="${item.id}" class="product-name" th:text="${item.product_id.name}" ></label>
                                         <div class="product-size" th:text="${'size: '+item.size}" ></div>
                                     </div>
-                                    <div class="col-md-3 input-group product-quantity">
+                                    <div class="col-md-3 input-group number-spinner product-quantity" style="margin-left:0">
                                         <span class="input-group-btn input-group-btn-left">
                                             <button class="btn btn-default" data-dir="dwn"
                                                     style="border-top-right-radius: 0;border-bottom-right-radius: 0;"><span
@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="product-price col-md-2" th:text="${item.product_id.salePrice+' đ'}"></div>
 
-                                    <div class="actions col-md-1">
+                                    <div class="actions-cart col-md-1">
                                         <a href="#" th:data-id="${item.product_id.id}" th:data-size="${item.size}" class="on-default update-product"><i class="ri-save-3-fill"></i></a>
                                         <a href="#" th:data-id="${item.id}" class="on-default remove-row delete-product"><i class="far fa-trash-alt"></i></a>
 
@@ -83,17 +83,17 @@
         <div class="col-lg-4">
             <div class="pricing childs">
                 <div class="coupon price-include">
-                    <div class="text">Tạm tính</div>
-                    <input class="form-control text-price-input" id="in-price" type="text" value="0" readonly/>
-                </div>
-                <div class="coupon price-include">
-                    <div class="text">Khuyến mãi</div>
+                    <div class="text">Giảm giá</div>
                     <input class="form-control text-price-input" id="in-promotion-value" type="text" readonly/>
                 </div>
                 <div class="coupon price-include">
-                    <div class="text">Tổng thanh toán</div>
-                    <input class="form-control text-price-input" id="in-total-price" type="text" readonly/>
+                    <div class="text">Tổng tiền</div>
+                    <input class="form-control text-price-input" id="in-price" type="text" value="0" readonly/>
                 </div>
+<!--                <div class="coupon price-include">-->
+<!--                    <div class="text">Tổng thanh toán</div>-->
+<!--                    <input class="form-control text-price-input" id="in-total-price" type="text" readonly/>-->
+<!--                </div>-->
             </div>
             <div class="float-right">
                 <a href="/san-pham">
@@ -106,7 +106,7 @@
 </main>
 
 <th:block id="js-resources">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
     <script>
 
         function calcAndShowTotal() {
@@ -151,7 +151,7 @@
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     toastr.success("Cập nhật sản phẩm thành công");
-
+                    setTimeout(() => location.reload(), 500);
                 },
                 error: function (data) {
                     toastr.warning("Lỗi");

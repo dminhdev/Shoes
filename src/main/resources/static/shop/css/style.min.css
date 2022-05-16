@@ -11790,7 +11790,7 @@ section {
 .cart-product-info{
     padding: 5px;
 }
-.actions .a{
+.actions-cart a{
     padding-top: 12px;
     font-size: 2.1rem;
     padding-left: 0;
