@@ -74,9 +74,9 @@ public class OrderServiceImpl implements OrderService {
         }
 
         //Kiểm tra giá sản phẩm
-        if (product.get().getSalePrice() != createOrderRequest.getProductPrice()) {
-            throw new BadRequestException("Giá sản phẩm thay đổi, Vui lòng đặt hàng lại!");
-        }
+//        if (product.get().getSalePrice() != createOrderRequest.getProductPrice()) {
+//            throw new BadRequestException("Giá sản phẩm thay đổi, Vui lòng đặt hàng lại!");
+//        }
         Order order = new Order();
         User user = new User();
         user.setId(userId);
